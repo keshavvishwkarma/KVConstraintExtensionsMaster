@@ -21,7 +21,7 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-       UIView *view = [UIView prepareNewAutoLayoutView];
+       UIView *view = [UIView prepareNewViewForConstraint];
        constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"[view]-[view]"                                                              options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });
     
@@ -33,8 +33,8 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-       UIView *view = [UIView prepareNewAutoLayoutView];
-       UIView *Superview = [UIView prepareNewAutoLayoutView];
+       UIView *view = [UIView prepareNewViewForConstraint];
+       UIView *Superview = [UIView prepareNewViewForConstraint];
        [Superview addSubview:view];
        constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"|-[view]"                                                                                 options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });
@@ -42,14 +42,13 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
     return constraint.constant; // 20.0 expected
 }
 
-
-- (BOOL)equalsConstraint:(NSLayoutConstraint *)expectedConstraint {
-    if (self.firstItem == expectedConstraint.firstItem &&
-        self.firstAttribute == expectedConstraint.firstAttribute &&
-        self.relation == expectedConstraint.relation &&
-        self.secondItem == expectedConstraint.secondItem &&
-        self.secondAttribute == expectedConstraint.secondAttribute &&
-        self.multiplier == expectedConstraint.multiplier ) {
+- (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint {
+    if (self.firstItem == aConstraint.firstItem &&
+        self.firstAttribute == aConstraint.firstAttribute &&
+        self.relation == aConstraint.relation &&
+        self.secondItem == aConstraint.secondItem &&
+        self.secondAttribute == aConstraint.secondAttribute &&
+        self.multiplier == aConstraint.multiplier ) {
         return YES;
     }
     
@@ -63,23 +62,23 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
     return NO;
 }
 
-+ (NSLayoutConstraint *)expectedConstraintForView:(UIView*)aview attribute:(NSLayoutAttribute)attribute {
-    assert(aview!=nil);
++ (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute {
+    assert(aView!=nil);
     
     if ([self isSelfConstraintAttribute:attribute]) {
         
-        NSLog(@"Tracing constrain in subview constraints, count = %@",@(aview.constraints.count));
-        for (NSLayoutConstraint *actualConstraint in aview.constraints)
+        NSLog(@"Tracing constrain in subview constraints, count = %@",@(aView.constraints.count));
+        for (NSLayoutConstraint *actualConstraint in aView.constraints)
         {
-            if ( (actualConstraint.firstItem == nil && actualConstraint.secondItem == aview)||
-                (actualConstraint.firstItem == aview && actualConstraint.secondItem == nil) )
+            if ( (actualConstraint.firstItem == nil && actualConstraint.secondItem == aView)||
+                (actualConstraint.firstItem == aView && actualConstraint.secondItem == nil) )
             {
                 // In this case, this constraintint may be either widthConstraint or heightConstrain
                 if (attribute == (actualConstraint.firstAttribute|actualConstraint.secondAttribute)) {
                     return actualConstraint;
                 }
             }
-            else if ( (actualConstraint.firstItem == aview )&&(actualConstraint.secondItem == aview ))
+            else if ( (actualConstraint.firstItem == aView )&&(actualConstraint.secondItem == aView ))
             {
                 // In this case, this constraintint is only aspectRatioConstrain
                 if (attribute == (actualConstraint.firstAttribute|actualConstraint.secondAttribute)) {
@@ -92,12 +91,12 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
     }
     else
     {
-        NSLog(@"Tracing constrain in superview constraints, count = %@",@(aview.constraints.count));
+        NSLog(@"Tracing constrain in superview constraints, count = %@",@(aView.constraints.count));
         
-        for (NSLayoutConstraint *actualConstraint in aview.superview.constraints)
+        for (NSLayoutConstraint *actualConstraint in aView.superview.constraints)
         {
-            if ( ((actualConstraint.firstItem == aview)&&(actualConstraint.secondItem == aview.superview))||
-                ((actualConstraint.secondItem == aview )&&(actualConstraint.firstItem == aview.superview)) )
+            if ( ((actualConstraint.firstItem == aView)&&(actualConstraint.secondItem == aView.superview))||
+                ((actualConstraint.secondItem == aView )&&(actualConstraint.firstItem == aView.superview)) )
             {
                 // In this case, this constraintint is only aspectRatioConstrain
                 if ( (attribute == actualConstraint.firstAttribute)&&
@@ -118,9 +117,9 @@ const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
 
 @implementation NSArray (KV_ContainsConstraint)
 
-- (NSLayoutConstraint *)containsExpectedConstraint:(NSLayoutConstraint *)expectedConstraint{
+- (NSLayoutConstraint *)containsAppliedConstraint:(NSLayoutConstraint *)appliedConstraint{
     for (NSLayoutConstraint *actualConstraint in self) {
-        if ([actualConstraint equalsConstraint:expectedConstraint])
+        if ([actualConstraint isEqualToConstraint:appliedConstraint])
             return actualConstraint;
     }
     return nil;

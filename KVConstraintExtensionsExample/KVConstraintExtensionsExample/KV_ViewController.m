@@ -39,19 +39,19 @@
 
 - (void)setupViews
 {
-    self.containerView = [UIView prepareNewAutoLayoutView];
+    self.containerView = [UIView prepareNewViewForConstraint];
     self.containerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.47 blue:0.48 alpha:1.0];
     [self.view addSubview:self.containerView];
 }
 
 - (IBAction)updateConstraintToggleAction:(id)sender
 {
-    [self.containerView accessExpectedConstraint:NSLayoutAttributeHeight completion:^(NSLayoutConstraint *expectedConstraint){
+    [self.containerView accessAppliedConstraintByAttribute:NSLayoutAttributeHeight completion:^(NSLayoutConstraint *expectedConstraint){
         if (expectedConstraint) {
             if (expectedConstraint.constant) {
                 expectedConstraint.constant = 0;
             }else{
-                expectedConstraint.constant = self.view.center.y;
+                expectedConstraint.constant = self.view.center.y*0.65;
             }
             
             [UIView animateWithDuration:0.25 animations:^{

@@ -12,13 +12,13 @@
 
 #pragma mark - Initializer Methods
 
-+ (instancetype)prepareNewAutoLayoutView {
-    UIView *view = [self new];
-    view.translatesAutoresizingMaskIntoConstraints = NO;
-    return view;
++ (instancetype)prepareNewViewForConstraint {
+    UIView *preparedView = [self new];
+    [preparedView prepareViewForConstraint];
+    return preparedView;
 }
 
-- (void)prepareViewForAutoLayout {
+- (void)prepareViewForConstraint {
     self.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
@@ -76,10 +76,10 @@
  * for this you need to call it according to view (self or Superview)
  */
 - (void)addPreparedConastrainInView:(NSLayoutConstraint *)constraint {
-    NSLayoutConstraint *expectedConstraint = [self.constraints containsExpectedConstraint:constraint];
+    NSLayoutConstraint *appliedConstraint = [self.constraints containsAppliedConstraint:constraint];
     // if this constraint is already added then it update the constraint values else added new constraint
-    if (expectedConstraint) {
-        [expectedConstraint setConstant:constraint.constant];
+    if (appliedConstraint) {
+        [appliedConstraint setConstant:constraint.constant];
     } else {
         if (constraint) {
             [self addConstraint:constraint];
@@ -221,11 +221,15 @@
 
 #pragma mark - Modify constraint of a UIView
 
-- (void)accessExpectedConstraint:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *expectedConstraint))completion
+- (NSLayoutConstraint*)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute {
+    return [NSLayoutConstraint appliedConstraintForView:self attribute:attribute];
+}
+
+- (void)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *appliedConstraint))completion
 {
     if (completion) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion([NSLayoutConstraint expectedConstraintForView:self attribute:attribute]);
+            completion([self accessAppliedConstraintByAttribute:attribute]);
         });
     }
 }

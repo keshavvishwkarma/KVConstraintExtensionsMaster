@@ -17,15 +17,15 @@ UIKIT_EXTERN const NSLayoutRelation defualtRelation;
 + (CGFloat)defualtSpacingBetweenSiblings;
 + (CGFloat)defualtSpacingBetweenSuperview;
 
-- (BOOL)equalsConstraint:(NSLayoutConstraint *)expectedConstraint;
+- (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint;
 
 // this method is used to trace the allready added constraints on view
-+ (NSLayoutConstraint *)expectedConstraintForView:(UIView*)aview attribute:(NSLayoutAttribute)attribute;
++ (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute;
 
 @end
 
 @interface NSArray (KV_ContainsConstraint)
 
-- (NSLayoutConstraint *)containsExpectedConstraint:(NSLayoutConstraint *)expectedConstraint;
+- (NSLayoutConstraint *)containsAppliedConstraint:(NSLayoutConstraint *)appliedConstraint;
 
 @end

@@ -10,8 +10,8 @@
 
 @interface UIView (KVConstraintExtensions)
 
-+ (instancetype)prepareNewAutoLayoutView;
-- (void)prepareViewForAutoLayout;
++ (instancetype)prepareNewViewForConstraint;
+- (void)prepareViewForConstraint;
 
 #pragma mark - Generic methods to create constraints for views
 
@@ -60,6 +60,8 @@
 
 #pragma mark - Access expected constraint from a reciever view
 
-- (void)accessExpectedConstraint:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *expectedConstraint))completion;
+- (NSLayoutConstraint*)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute;
+
+- (void)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *appliedConstraint))completion;
 
 @end
