@@ -10,17 +10,21 @@
 
 @interface NSLayoutConstraint (KVConstraintExtensions)
 
-UIKIT_EXTERN const CGFloat defualtMultiplier ;
-UIKIT_EXTERN const CGFloat defualtConstant ;
+UIKIT_EXTERN const CGFloat defualtMultiplier;
+UIKIT_EXTERN const CGFloat defualtConstant;
 UIKIT_EXTERN const NSLayoutRelation defualtRelation;
+UIKIT_EXTERN const CGFloat defualtLessMaxPriority;
 
 + (CGFloat)defualtSpacingBetweenSiblings;
 + (CGFloat)defualtSpacingBetweenSuperview;
-
-- (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint;
-
++ (BOOL)recognizedDirectionByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toTttribute;
 // this method is used to trace the allready added constraints on view
 + (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute;
+
+- (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint;
+- (NSLayoutConstraint *)swapConstraintItems;
+- (NSLayoutConstraint *)modifyConstraintRelatedBy:(NSLayoutRelation)relation;
+- (NSLayoutConstraint *)modifyConstraintMultiplierBy:(CGFloat)multiplier;
 
 @end
 

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041EC06C1B7000EE004DB73A /* UIView+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 041EC06B1B7000EE004DB73A /* UIView+KVConstraintExtensions.m */; };
+		049D9EA51B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D9EA21B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m */; };
+		049D9EA61B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D9EA41B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m */; };
 		04A1535B1B6FFBDC0004D1A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A1535A1B6FFBDC0004D1A9 /* Foundation.framework */; };
 		04A1535D1B6FFBDC0004D1A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A1535C1B6FFBDC0004D1A9 /* CoreGraphics.framework */; };
 		04A1535F1B6FFBDC0004D1A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A1535E1B6FFBDC0004D1A9 /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		04A1537C1B6FFBDC0004D1A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A1535E1B6FFBDC0004D1A9 /* UIKit.framework */; };
 		04A153841B6FFBDD0004D1A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A153821B6FFBDD0004D1A9 /* InfoPlist.strings */; };
 		04A153861B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A153851B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m */; };
-		04A153921B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A153911B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		041EC06A1B7000EE004DB73A /* UIView+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KVConstraintExtensions.h"; sourceTree = "<group>"; };
-		041EC06B1B7000EE004DB73A /* UIView+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KVConstraintExtensions.m"; sourceTree = "<group>"; };
-		04625BF31B7007D30009EEE3 /* KVConstraintExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensions.h; sourceTree = "<group>"; };
+		049D9EA01B7BC414007FFBB3 /* KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensions.h; sourceTree = "<group>"; };
+		049D9EA11B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+KVConstraintExtensions.h"; sourceTree = "<group>"; };
+		049D9EA21B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+KVConstraintExtensions.m"; sourceTree = "<group>"; };
+		049D9EA31B7BC414007FFBB3 /* UIView+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KVConstraintExtensions.h"; sourceTree = "<group>"; };
+		049D9EA41B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KVConstraintExtensions.m"; sourceTree = "<group>"; };
 		04A153571B6FFBDC0004D1A9 /* KVConstraintExtensionsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KVConstraintExtensionsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A1535A1B6FFBDC0004D1A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04A1535C1B6FFBDC0004D1A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,8 +60,6 @@
 		04A153811B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KVConstraintExtensionsExampleTests-Info.plist"; sourceTree = "<group>"; };
 		04A153831B6FFBDD0004D1A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04A153851B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVConstraintExtensionsExampleTests.m; sourceTree = "<group>"; };
-		04A153901B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+KVConstraintExtensions.h"; sourceTree = "<group>"; };
-		04A153911B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+KVConstraintExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +86,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				049D9EA01B7BC414007FFBB3 /* KVConstraintExtensions.h */,
+				049D9EA31B7BC414007FFBB3 /* UIView+KVConstraintExtensions.h */,
+				049D9EA41B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m */,
+				049D9EA11B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.h */,
+				049D9EA21B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m */,
+			);
+			path = KVConstraintExtensions;
+			sourceTree = SOURCE_ROOT;
+		};
 		04A1534E1B6FFBDC0004D1A9 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +130,7 @@
 		04A153601B6FFBDC0004D1A9 /* KVConstraintExtensionsExample */ = {
 			isa = PBXGroup;
 			children = (
-				04A1538F1B6FFC090004D1A9 /* KVConstraintExtensions */,
+				049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensions */,
 				04A153691B6FFBDC0004D1A9 /* KV_AppDelegate.h */,
 				04A1536A1B6FFBDC0004D1A9 /* KV_AppDelegate.m */,
 				04A1536C1B6FFBDC0004D1A9 /* Main.storyboard */,
@@ -158,18 +170,6 @@
 				04A153821B6FFBDD0004D1A9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		04A1538F1B6FFC090004D1A9 /* KVConstraintExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				04625BF31B7007D30009EEE3 /* KVConstraintExtensions.h */,
-				041EC06A1B7000EE004DB73A /* UIView+KVConstraintExtensions.h */,
-				041EC06B1B7000EE004DB73A /* UIView+KVConstraintExtensions.m */,
-				04A153901B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.h */,
-				04A153911B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.m */,
-			);
-			path = KVConstraintExtensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,10 +271,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A153711B6FFBDC0004D1A9 /* KV_ViewController.m in Sources */,
-				041EC06C1B7000EE004DB73A /* UIView+KVConstraintExtensions.m in Sources */,
+				049D9EA61B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m in Sources */,
 				04A153671B6FFBDC0004D1A9 /* main.m in Sources */,
 				04A1536B1B6FFBDC0004D1A9 /* KV_AppDelegate.m in Sources */,
-				04A153921B6FFC520004D1A9 /* NSLayoutConstraint+KVConstraintExtensions.m in Sources */,
+				049D9EA51B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
