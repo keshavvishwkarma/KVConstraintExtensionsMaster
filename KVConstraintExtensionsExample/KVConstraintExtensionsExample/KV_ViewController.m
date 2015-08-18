@@ -68,11 +68,7 @@
             }else{
                 expectedConstraint.constant = self.view.center.y;
             }
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                [self.view layoutIfNeeded];
-                [self.containerView.superview setNeedsDisplay];
-            }];
+            [self.containerView updateModifyConstraintsWithAnimation:NULL];
         }else{
             [self.containerView accessAppliedConstraintByAttribute:NSLayoutAttributeLeading completion:^(NSLayoutConstraint *expectedConstraint){
                 if (expectedConstraint) {
@@ -81,11 +77,7 @@
                     }else{
                         expectedConstraint.constant = self.view.frame.size.width;
                     }
-                    
-                    [UIView animateWithDuration:0.25 animations:^{
-                        [self.view layoutIfNeeded];
-                        [self.containerView.superview setNeedsDisplay];
-                    }];
+                    [self.containerView updateModifyConstraintsWithAnimation:NULL];
                 }
             }];
         }

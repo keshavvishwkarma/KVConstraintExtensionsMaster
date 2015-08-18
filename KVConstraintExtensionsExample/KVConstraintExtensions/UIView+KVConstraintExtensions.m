@@ -100,6 +100,19 @@
     }
 }
 
+#pragma mark - Remove Constraints From a specific View
+
+- (void)removeAppliedConstraintFromSupreview {
+    UIView *superview = self.superview;
+    [self removeFromSuperview];
+    [superview addSubview:self];
+}
+
+- (void)removeAllAppliedConstraints {
+    [self removeAppliedConstraintFromSupreview];
+    [self removeConstraints:self.constraints];
+}
+
 #pragma mark - Modify constraint of a UIView
 
 - (void)changeAppliedConstraintPriorityBy:(UILayoutPriority)priority forAttribute:(NSLayoutAttribute)attribute {
@@ -115,6 +128,18 @@
     }else{
         NSLog(@"appliedConstraint does not contain caller view = %@ \n appliedConstraint = %@",self,appliedConstraint);
     }
+}
+
+- (void)updateModifyConstraints {
+    [self layoutIfNeeded];
+    [self setNeedsLayout];
+}
+
+- (void)updateModifyConstraintsWithAnimation:(void (^)(BOOL finished))completion {
+    UIView *referenceView = self.superview ? self.superview : self;
+    [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+        [referenceView updateModifyConstraints];
+    } completion:completion];
 }
 
 #pragma mark - Access Applied Constraint By Attributes From a specific View
@@ -169,8 +194,8 @@
     [self applyTrailingPinConstraintToSuperviewWithPadding:padding];
 }
 - (void)applyTopAndBottomPinConstraintToSuperviewWithPadding:(CGFloat)padding{
-    [self applyBottomPinConstraintToSuperviewWithPadding:padding];
     [self applyTopPinConstraintToSuperviewWithPadding:padding];
+    [self applyBottomPinConstraintToSuperviewWithPadding:padding];
 }
 - (void)applyEqualWidthPinConstrainToSuperview {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeWidth constant:defualtConstant];
@@ -282,26 +307,6 @@
     }else {
         [self.superview applyPreparedConastrainInView:prepareConstraintForSiblingView];
     }
-}
-
-#pragma mark - Constraint for LayoutGuide of viewController
-
-- (NSLayoutConstraint *)prepareEqualRelationPinConastrainToTopLayoutGuideOfViewController:(UIViewController *)viewController WithPadding:(CGFloat)padding {
-    [self prepareViewForConstraint];
-    NSLayoutConstraint *preparedTopLayoutGuideConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:defualtRelation toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:defualtMultiplier constant:padding];
-    [viewController.view applyPreparedConastrainInView:preparedTopLayoutGuideConstraint];
-    
-    return preparedTopLayoutGuideConstraint;
-}
-
-- (NSLayoutConstraint *)prepareEqualRelationPinConastrainToBottomLayoutGuideOfViewController:(UIViewController *)viewController WithPadding:(CGFloat)padding {
-    [self prepareViewForConstraint];
-    
-    NSLayoutConstraint *preparedBottomLayoutGuideConstraint = [NSLayoutConstraint constraintWithItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop relatedBy:defualtRelation toItem:self attribute:NSLayoutAttributeBottom multiplier:defualtMultiplier constant:padding];
-    
-    [viewController.view applyPreparedConastrainInView:preparedBottomLayoutGuideConstraint];
-    
-    return preparedBottomLayoutGuideConstraint;
 }
 
 @end

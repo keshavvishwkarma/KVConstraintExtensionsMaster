@@ -18,7 +18,8 @@ UIKIT_EXTERN const CGFloat defualtLessMaxPriority;
 + (CGFloat)defualtSpacingBetweenSiblings;
 + (CGFloat)defualtSpacingBetweenSuperview;
 + (BOOL)recognizedDirectionByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toTttribute;
-// this method is used to trace the allready added constraints on view
+/* This method is used to trace the allready added constraints on receiver view
+ */
 + (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute;
 
 - (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint;
