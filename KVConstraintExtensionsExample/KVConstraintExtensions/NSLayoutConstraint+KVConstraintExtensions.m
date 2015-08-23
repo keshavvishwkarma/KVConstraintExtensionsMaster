@@ -22,7 +22,7 @@ const CGFloat defualtLessMaxPriority = 999.99996 ;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIView *view = [UIView prepareNewViewForConstraint];
+        UIView *view = [UIView prepareNewViewForAutoLayout];
         constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"[view]-[view]"                                                              options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });
     
@@ -34,8 +34,8 @@ const CGFloat defualtLessMaxPriority = 999.99996 ;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIView *view = [UIView prepareNewViewForConstraint];
-        UIView *Superview = [UIView prepareNewViewForConstraint];
+        UIView *view = [UIView prepareNewViewForAutoLayout];
+        UIView *Superview = [UIView prepareNewViewForAutoLayout];
         [Superview addSubview:view];
         constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"|-[view]"                                                                                 options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });
@@ -78,7 +78,7 @@ const CGFloat defualtLessMaxPriority = 999.99996 ;
     
     if ([self isSelfConstraintAttribute:attribute]) {
         
-        NSLog(@"Tracing constrain in subview constraints, count = %@",@(aView.constraints.count));
+        KVLog(@"Tracing constrain in subview constraints, count = %@",@(aView.constraints.count));
         for (NSLayoutConstraint *actualConstraint in aView.constraints)
         {
             if ( (actualConstraint.firstItem == nil && actualConstraint.secondItem == aView)||
@@ -102,7 +102,7 @@ const CGFloat defualtLessMaxPriority = 999.99996 ;
     }
     else
     {
-        NSLog(@"Tracing constrain in superview constraints, count = %@",@(aView.constraints.count));
+        KVLog(@"Tracing constrain in superview constraints, count = %@",@(aView.constraints.count));
         
         for (NSLayoutConstraint *actualConstraint in aView.superview.constraints)
         {

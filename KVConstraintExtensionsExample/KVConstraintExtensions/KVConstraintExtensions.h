@@ -10,6 +10,13 @@
 #define KVConstraintExtensionsExample_KVConstraintExtensions_h
 
 #import "UIView+KVConstraintExtensions.h"
+#import "UIViewController+KVConstraintExtensions.h"
 #import "NSLayoutConstraint+KVConstraintExtensions.h"
+
+#if DEBUG == 1
+#define KVLog(...)
+#elif DEBUG == 0
+#define KVLog(...) NSLog(__VA_ARGS__)
+#endif
 
 #endif

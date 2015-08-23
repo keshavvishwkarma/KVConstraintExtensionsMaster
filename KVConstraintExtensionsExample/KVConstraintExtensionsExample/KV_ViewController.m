@@ -7,79 +7,59 @@
 //
 
 #import "KV_ViewController.h"
-#import "KVConstraintExtensions.h"
 
 @interface KV_ViewController ()
-
-@property (strong, nonatomic) UIView *containerView;
 
 @end
 
 @implementation KV_ViewController
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [self setupViews];
+    /* Step 1 create & configure the view hierarchy for constraint first.
+     */
+     [self createAndConfigureViewHierarchy];
     
-    // run at a time either example1 or example2 methods
-//    [self example1];
-    [self example2];
+    /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
+     */
+    [self applyConstaint];
 }
 
-- (void)setupViews
+- (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForConstraint];
+    self.containerView = [UIView prepareNewViewForAutoLayout];
     self.containerView.backgroundColor = [UIColor colorWithRed:0.95 green:0.47 blue:0.48 alpha:1.0];
     [self.view addSubview:self.containerView];
 }
 
--(void)example1{
-    [self.containerView applyTopPinConstraintToSuperviewWithPadding:20];
-    [self.containerView applyLeadingPinConstraintToSuperviewWithPadding:40];
-    [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:40];
-    [self.containerView applyHeightConstrain:self.view.center.y];
-}
-
--(void)example2 {
-    // apply constrint with LayoutGuides of viewController
-    [[self containerView] applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:20];
-    [[self containerView] prepareEqualRelationPinConastrainToTopLayoutGuideOfViewController:self WithPadding:20];
-    [[self containerView] prepareEqualRelationPinConastrainToBottomLayoutGuideOfViewController:self WithPadding:50];
+-(void)applyConstaint
+{
+    // here we are going to apply constraints
+    [self.containerView applyLeadingPinConstraintToSuperviewWithPadding:0];
+    [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:0];
     
-    //change the priority of constraint
-    [self.containerView changeAppliedConstraintPriorityBy:defualtLessMaxPriority forAttribute:NSLayoutAttributeLeading];
+    //  we can also apply leading and trailing of containerView both by using the below method. But this method is only useful when both leading and trailing have same padding
+    
+    [self.containerView applyTopPinConstraintToSuperviewWithPadding:0];
+    [self.containerView applyBottomPinConstraintToSuperviewWithPadding:54];
+    
+    //[self.containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:80];
+
 }
 
 - (IBAction)updateConstraintToggleAction:(id)sender
 {
-    [self.containerView accessAppliedConstraintByAttribute:NSLayoutAttributeHeight completion:^(NSLayoutConstraint *expectedConstraint){
+    [self.containerView accessAppliedConstraintByAttribute:NSLayoutAttributeTrailing completion:^(NSLayoutConstraint *expectedConstraint){
         if (expectedConstraint) {
             if (expectedConstraint.constant) {
                 expectedConstraint.constant = 0;
             }else{
-                expectedConstraint.constant = self.view.center.y;
+                expectedConstraint.constant = -CGRectGetWidth(self.view.frame);
             }
             [self.containerView updateModifyConstraintsWithAnimation:NULL];
-        }else{
-            [self.containerView accessAppliedConstraintByAttribute:NSLayoutAttributeLeading completion:^(NSLayoutConstraint *expectedConstraint){
-                if (expectedConstraint) {
-                    if (expectedConstraint.constant) {
-                        expectedConstraint.constant = 0;
-                    }else{
-                        expectedConstraint.constant = self.view.frame.size.width;
-                    }
-                    [self.containerView updateModifyConstraintsWithAnimation:NULL];
-                }
-            }];
         }
     }];
 }

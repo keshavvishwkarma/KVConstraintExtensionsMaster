@@ -1,0 +1,100 @@
+//
+//  KV_ApplyRatioConstraintVC.m
+//  KVConstraintExtensionsExample
+//
+//  Created by Welcome on 24/08/15.
+//  Copyright (c) 2015 Keshav. All rights reserved.
+//
+
+#import "KV_ApplyRatioConstraintVC.h"
+
+@interface KV_ApplyRatioConstraintVC ()
+
+@property (strong, nonatomic) UIButton *button1;
+@property (strong, nonatomic) UIButton *button2;
+@property (strong, nonatomic) UIButton *button3;
+
+@end
+
+@implementation KV_ApplyRatioConstraintVC
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    /* Just Two steps to Apply\Add constraints by programatically */
+    
+    /* Step 1 create & configure the view hierarchy for constraint first.
+     */
+    [self createAndConfigureViewHierarchy];
+    
+    /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
+     */
+    [self applyVerticallyDistributedConstraintsOnButtons];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"Top space = %@",@(CGRectGetMinY(self.button1.frame)));
+    NSLog(@"Space between button1 & button2 = %@",@(CGRectGetMinY(self.button2.frame)-CGRectGetMaxY(self.button1.frame)));
+    NSLog(@"Space between button2 & button3 = %@",@(CGRectGetMinY(self.button3.frame)-CGRectGetMaxY(self.button2.frame)));
+    NSLog(@"Bottom space = %@",@(CGRectGetHeight(self.containerView.frame)-CGRectGetMaxY(self.button3.frame)));
+    
+}
+
+-(void)applyVerticallyDistributedConstraintsOnButtons
+{
+    // setting constraint for the containerView
+    CGFloat const padding = 6.0f;
+
+    [self.containerView applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(padding, padding, padding,padding)];
+    
+    // Here setting the horizontal center of buttons
+    // means OriginX possition of view
+    [self.button1 applyConstraintForHorizontallyCenterInSuperview];
+    [self.button2 applyConstraintForHorizontallyCenterInSuperview];
+    [self.button3 applyConstraintForHorizontallyCenterInSuperview];
+    
+    // if we not get it then we needs to calculate it dynamically by text or something else
+    CGFloat const buttonHeight = 34.0f;
+    CGFloat const numberOfButtons = 3.0f;
+    
+    // here setting OriginY possition of view in percentaage.
+    [self.button1 applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
+    
+    [self.button2 applyConstraintForVerticallyCenterInSuperview];
+    
+    [self.button3 applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
+    
+    [self.containerView updateModifyConstraints];
+}
+
+- (void)createAndConfigureViewHierarchy
+{
+    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView.backgroundColor = [UIColor Teal];
+    [self.view addSubview:self.containerView];
+    
+    self.button1 = [UIButton prepareNewViewForAutoLayout];
+    self.button1.backgroundColor = [UIColor Red];
+    [self.containerView addSubview:self.button1];
+    
+    self.button2 = [UIButton prepareNewViewForAutoLayout];
+    self.button2.backgroundColor = [UIColor Green];
+    [self.containerView addSubview:self.button2];
+    
+    self.button3 = [UIButton prepareNewViewForAutoLayout];
+    self.button3.backgroundColor = [UIColor Brown];
+    [self.containerView addSubview:self.button3];
+    
+    [self.button1 setTitle:@"button1" forState:UIControlStateNormal];
+    [self.button2 setTitle:@"button2" forState:UIControlStateNormal];
+    [self.button3 setTitle:@"button3" forState:UIControlStateNormal];
+    
+}
+
+@end
+

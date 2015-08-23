@@ -10,8 +10,13 @@
 
 @interface UIView (KVConstraintExtensions)
 
-+ (instancetype)prepareNewViewForConstraint;
-- (void)prepareViewForConstraint;
+/* This method is used to create new instance of ui elements for autolayout.
+ */
++ (instancetype)prepareNewViewForAutoLayout;
+
+/* This method is used to prepare already created instance of ui elements for autolayout.
+ */
+- (void)prepareViewForAutoLayout;
 
 #pragma mark - Generic methods
 #pragma mark - To create constraints for superview
@@ -87,6 +92,9 @@
 
 - (void)applyEqualHeightRatioPinConstrainToSuperview: (CGFloat)ratio;
 - (void)applyEqualWidthRatioPinConstrainToSuperview: (CGFloat)ratio;
+
+- (void)applyCenterXRatioPinConstrainToSuperview:(CGFloat)ratio padding:(CGFloat)padding;
+- (void)applyCenterYRatioPinConstrainToSuperview:(CGFloat)ratio padding:(CGFloat)padding;
 
 - (void)applyConstraintForCenterInSuperview;     /* Center horizontally and Vertically */
 - (void)applyConstraintForVerticallyCenterInSuperview;    /* Center Vertically */

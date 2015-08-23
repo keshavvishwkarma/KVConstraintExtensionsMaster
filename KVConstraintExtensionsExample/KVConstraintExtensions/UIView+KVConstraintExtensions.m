@@ -12,13 +12,13 @@
 
 #pragma mark - Initializer Methods
 
-+ (instancetype)prepareNewViewForConstraint {
++ (instancetype)prepareNewViewForAutoLayout {
     UIView *preparedView = [self new];
-    [preparedView prepareViewForConstraint];
+    [preparedView prepareViewForAutoLayout];
     return preparedView;
 }
 
-- (void)prepareViewForConstraint {
+- (void)prepareViewForAutoLayout {
     if (self.translatesAutoresizingMaskIntoConstraints) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -30,8 +30,6 @@
 {
     NSAssert((firstView||secondView), @"both firstView & secondView must not be nil.");
     NSAssert(multiplier!=INFINITY, @"Multiplier/Ratio of view must not be INFINITY.");
-    [firstView prepareViewForConstraint];
-    [secondView prepareViewForConstraint];
     
     return [NSLayoutConstraint constraintWithItem:firstView attribute:attribute1 relatedBy:relation toItem:secondView attribute:attribute2 multiplier:multiplier constant:defualtConstant];
 }
@@ -110,7 +108,9 @@
 
 - (void)removeAllAppliedConstraints {
     [self removeAppliedConstraintFromSupreview];
-    [self removeConstraints:self.constraints];
+    if (self.constraints.count) {
+        [self removeConstraints:self.constraints];
+    }
 }
 
 #pragma mark - Modify constraint of a UIView
@@ -126,7 +126,7 @@
         [self removeConstraint:appliedConstraint];
         [self addConstraint:constraint];
     }else{
-        NSLog(@"appliedConstraint does not contain caller view = %@ \n appliedConstraint = %@",self,appliedConstraint);
+        KVLog(@"appliedConstraint does not contain caller view = %@ \n appliedConstraint = %@",self,appliedConstraint);
     }
 }
 
@@ -205,24 +205,30 @@
 }
 
 - (void)applyEqualHeightRatioPinConstrainToSuperview:(CGFloat)ratio {
-    // first method to get equal Ratio constraint
-    NSAssert(self.superview, @" Superview must not be nil.\n For View: %@", self);
-    NSAssert(ratio!=INFINITY, @" Ratio must not be INFINITY.");
-    
-    NSLayoutConstraint *equalHeightRatioPinConstraint = [self prepareEqualRelationPinRatioConstraintToSuperview:NSLayoutAttributeHeight multiplier:ratio];
-    if (equalHeightRatioPinConstraint) {
-        [self.superview applyPreparedConastrainInView:equalHeightRatioPinConstraint];
-    }
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeHeight ratio:ratio padding:defualtConstant];
 }
 
 - (void)applyEqualWidthRatioPinConstrainToSuperview:(CGFloat)ratio {
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeWidth ratio:ratio padding:defualtConstant];
+}
+
+- (void)applyCenterXRatioPinConstrainToSuperview:(CGFloat)ratio padding:(CGFloat)padding {
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeCenterX ratio:ratio padding:padding];
+}
+
+- (void)applyCenterYRatioPinConstrainToSuperview:(CGFloat)ratio padding:(CGFloat)padding {
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeCenterY ratio:ratio padding:padding];
+}
+
+- (void)applyEqualRatioPinConstrainToSuperview:(NSLayoutAttribute)attribute ratio:(CGFloat)ratio padding:(CGFloat)padding{
     // first method to get equal Ratio constraint
     NSAssert(self.superview, @" Superview of this view must not be nil.\n For View: %@", self);
     NSAssert(ratio!=INFINITY, @" Ratio must not be INFINITY.");
     
-    NSLayoutConstraint *equalHeightRatioPinConstraint = [self prepareEqualRelationPinRatioConstraintToSuperview:NSLayoutAttributeWidth multiplier:ratio];
-    if (equalHeightRatioPinConstraint) {
-        [self.superview applyPreparedConastrainInView:equalHeightRatioPinConstraint];
+    NSLayoutConstraint *relationRatioPinConstraint = [self prepareEqualRelationPinRatioConstraintToSuperview:attribute multiplier:ratio];
+    if (relationRatioPinConstraint) {
+        [relationRatioPinConstraint setConstant:padding];
+        [self.superview applyPreparedConastrainInView:relationRatioPinConstraint];
     }
 }
 
@@ -283,14 +289,14 @@
     if (width!=INFINITY) {
         [self applyPreparedConastrainInView:[self prepareSelfConastrain:NSLayoutAttributeWidth constant:width]];
     }else {
-        NSLog(@"Width of the view con not be INFINITY");
+        KVLog(@"Width of the view con not be INFINITY");
     }
 }
 - (void)applyHeightConstrain:(CGFloat) height {
     if (height!=INFINITY) {
         [self applyPreparedConastrainInView:[self prepareSelfConastrain:NSLayoutAttributeHeight constant:height]];
     } else {
-        NSLog(@"Height of the view con not be INFINITY");
+        KVLog(@"Height of the view con not be INFINITY");
     }
 }
 

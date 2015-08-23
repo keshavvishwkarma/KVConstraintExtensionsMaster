@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Keshav. All rights reserved.
 //
 
-#import "UIViewController+KVConstraintExtensions.h"
-#import "UIView+KVConstraintExtensions.h"
-#import "NSLayoutConstraint+KVConstraintExtensions.h"
+#import "KVConstraintExtensions.h"
 
 @implementation UIViewController (KVConstraintExtensions)
 
@@ -16,7 +14,7 @@
 // to create
 - (NSLayoutConstraint*)prepareLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding isTopLayoutGuide:(BOOL)isTopLayoutGuide {
     NSLayoutConstraint *preparedConstraint = nil;
-    [toView prepareViewForConstraint];
+    [toView prepareViewForAutoLayout];
     
     NSAssert(([self view] != toView), @"you are passing wrong view and fromView must not be distinct from self.view of ViewController.");
     NSAssert(toView, @"fromView must not be nil.");
@@ -48,7 +46,7 @@
                  }else  if (NSLayoutAttributeBottom == (constraint.firstAttribute|constraint.secondAttribute)) {
                      appliedConstraint = constraint;
                  }else{
-                     NSLog(@"NOT Found");
+                     KVLog(@"NOT Found");
                  }
              }
              else if (((constraint.firstItem == layoutGuide) && (constraint.firstAttribute == layoutGuideAttribute)) && ((constraint.secondItem == fromView) && (constraint.secondAttribute == viewAttribute))) {
@@ -56,7 +54,7 @@
              } else if (((constraint.secondItem == layoutGuide) && (constraint.secondAttribute == layoutGuideAttribute)) && ((constraint.firstItem == fromView) && (constraint.firstAttribute == viewAttribute))) {
                  appliedConstraint = constraint;
              } else {
-                 NSLog(@"NOT Found");
+                 KVLog(@"NOT Found");
              }
          }
      }];
