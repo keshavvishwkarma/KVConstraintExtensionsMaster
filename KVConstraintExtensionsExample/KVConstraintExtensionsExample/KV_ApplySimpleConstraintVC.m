@@ -113,10 +113,6 @@
      
      Same case will also happen with trailingPin and rightPin constraints try it yourself to understand.
      
-     #########************ NOTE ****************
-   ###These Constraints Conflicts are handle by KVConstraintExtentions Library.
-     #########************ NOTE ****************
-     
      */
     
 }
