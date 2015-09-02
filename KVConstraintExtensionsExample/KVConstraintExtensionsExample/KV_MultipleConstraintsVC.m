@@ -10,6 +10,8 @@
 
 @interface KV_MultipleConstraintsVC ()
 
+@property (strong, nonatomic) UIView *secondView;
+
 @end
 
 @implementation KV_MultipleConstraintsVC
@@ -31,7 +33,8 @@
 
 //    [self applyConstaint1];
     [self applyConstaint2];
-    
+    [self applyConstaint3];
+
 }
 
 - (void)createAndConfigureViewHierarchy
@@ -39,6 +42,11 @@
     self.containerView = [UIView prepareNewViewForAutoLayout];
     self.containerView.backgroundColor = [UIColor Brown];
     [self.view addSubview:self.containerView];
+
+    self.secondView = [UIView prepareNewViewForAutoLayout];
+    self.secondView.backgroundColor = [UIColor Brown];
+    [self.view addSubview:self.secondView];
+
 }
 
 - (void)applyConstaint1
@@ -59,7 +67,7 @@
     CGFloat width  = 60;
     CGFloat space  = 16;
     
-    for (NSInteger i = 0; i < 5; i++)
+    for (NSInteger i = 0; i < 4; i++)
 	{
         UIButton *contentButton = [UIButton prepareNewViewForAutoLayout];
         if (i&1) {
@@ -81,5 +89,26 @@
         [contentButton applyLeftPinConstraintToSuperviewWithPadding:((i*width +(i+1)*space))];
     }
 }
+/*******************************
+ * Apply multiple constraint so easily
+ ********************/
+
+- (void)applyConstaint3
+{
+//1. this method add four constraint (in order top, left, bottom, right) by writing only single
+//    [self.redView applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(50, 30, 50, 20)];
+
+//2. To avoid any constraint pin top, left, bottom or right, then just simply put any value INFINITY/HUGE_VALF in contentInset because any constraint can not have INFINITY constant.
+
+[self.secondView applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(INFINITY, 30, HUGE_VALF, 20)];
+
+// here you left two constraint Top and Bottom so view con not determine the height of the view and Y-Position of the view. So now you need to satisfied Y-Position of the view.
+[self.secondView applyCenterYPinConstraintToSuperviewWithPadding:50];
+
+// now applied constraints are sufficient but still view will not display/visible because view is not determine any height from the applied constraints so by default view set its height zero. So better is to give some height
+[self.secondView applyHeightConstrain:80];
+
+}
+
 
 @end

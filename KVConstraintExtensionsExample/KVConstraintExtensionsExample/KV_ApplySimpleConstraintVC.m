@@ -10,8 +10,6 @@
 
 @interface KV_ApplySimpleConstraintVC ()
 
-@property (strong, nonatomic) UIView *containerView;
-
 @end
 
 @implementation KV_ApplySimpleConstraintVC

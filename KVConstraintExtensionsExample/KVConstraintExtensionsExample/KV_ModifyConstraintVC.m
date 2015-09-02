@@ -8,22 +8,32 @@
 
 #import "KV_ModifyConstraintVC.h"
 
-@interface KV_ModifyConstraintVC ()
+@interface KV_ModifyConstraintVC (){
+    NSLayoutConstraint *constraint;
+}
+
+@property (strong, nonatomic) IBOutlet UIView *container;
 
 @end
 
 @implementation KV_ModifyConstraintVC
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+// lazy constraints
+-(NSLayoutConstraint *)constraint{
+    if (!constraint) {
+        constraint = [self.container accessAppliedConstraintByAttribute:NSLayoutAttributeTop];
+    }
+    return constraint;
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)panRecognizerDidFire:(UIPanGestureRecognizer *)panner
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (self.constraint) {
+        CGFloat offset = self.constraint.constant + [panner translationInView:self.view].y;
+        offset = MAX(0, MIN(offset, self.view.bounds.size.height));
+        self.constraint.constant = offset;
+        [panner setTranslation:CGPointZero inView:self.view];
+        [self.container updateModifyConstraints];
+    }
 }
-
 @end

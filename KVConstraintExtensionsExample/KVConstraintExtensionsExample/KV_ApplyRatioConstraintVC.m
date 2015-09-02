@@ -38,10 +38,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"Top space = %@",@(CGRectGetMinY(self.button1.frame)));
-    NSLog(@"Space between button1 & button2 = %@",@(CGRectGetMinY(self.button2.frame)-CGRectGetMaxY(self.button1.frame)));
-    NSLog(@"Space between button2 & button3 = %@",@(CGRectGetMinY(self.button3.frame)-CGRectGetMaxY(self.button2.frame)));
-    NSLog(@"Bottom space = %@",@(CGRectGetHeight(self.containerView.frame)-CGRectGetMaxY(self.button3.frame)));
+    KVLog(@"Top space = %@",@(CGRectGetMinY(self.button1.frame)));
+    KVLog(@"Space between button1 & button2 = %@",@(CGRectGetMinY(self.button2.frame)-CGRectGetMaxY(self.button1.frame)));
+    KVLog(@"Space between button2 & button3 = %@",@(CGRectGetMinY(self.button3.frame)-CGRectGetMaxY(self.button2.frame)));
+    KVLog(@"Bottom space = %@",@(CGRectGetHeight(self.containerView.frame)-CGRectGetMaxY(self.button3.frame)));
     
 }
 
@@ -71,6 +71,43 @@
     
     [self.containerView updateModifyConstraints];
 }
+
+
+-(void)distributeVerticallyButtons
+{
+    // seting constraint for containner view
+    [self.containerView applyConstraintFitToSuperview];
+    
+    // if we have not got height of button then we needs to calculate it dynamically by text or something else
+    CGFloat const buttonHeight = 34.0f;
+    CGFloat const numberOfButtons = 3.0f;
+    
+    NSArray *buttons = @[self.button1,self.button2,self.button3];
+    
+    NSInteger middelIndex = floorf((buttons.count/2.0f));
+    
+    // reference view to distrybute other view
+    [buttons[middelIndex] applyConstraintForCenterInSuperview];
+    
+    // processing for after midel button list
+    while ( (middelIndex +1)< buttons.count)
+    {
+        [buttons[++middelIndex] applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
+        [buttons[middelIndex] applyConstraintForHorizontallyCenterInSuperview];
+    }
+    
+    middelIndex = floorf((buttons.count/2.0f));
+    // processing for before midel button list
+    while ((middelIndex - 1) != -1)
+    {
+        [buttons[--middelIndex] applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
+        
+        [buttons[middelIndex] applyConstraintForHorizontallyCenterInSuperview];
+    }
+    
+    [self.containerView updateModifyConstraints];
+}
+
 
 - (void)createAndConfigureViewHierarchy
 {
