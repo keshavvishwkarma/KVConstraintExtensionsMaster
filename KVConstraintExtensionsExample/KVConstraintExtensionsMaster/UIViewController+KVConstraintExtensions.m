@@ -25,7 +25,7 @@
 //  SOFTWARE.
 //
 
-#import "KVConstraintExtensions.h"
+#import "KVConstraintExtensionsMaster.h"
 
 @implementation UIViewController (KVConstraintExtensions)
 

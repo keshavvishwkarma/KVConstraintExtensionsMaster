@@ -62,7 +62,6 @@
 		049B24871B8A6291009ED565 /* UIColor+KVExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KVExtensions.m"; sourceTree = "<group>"; };
 		049B24891B8A6901009ED565 /* KV_BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KV_BaseViewController.h; sourceTree = "<group>"; };
 		049B248A1B8A6901009ED565 /* KV_BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KV_BaseViewController.m; sourceTree = "<group>"; };
-		049D9EA01B7BC414007FFBB3 /* KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensions.h; sourceTree = "<group>"; };
 		049D9EA11B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+KVConstraintExtensions.h"; sourceTree = "<group>"; };
 		049D9EA21B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+KVConstraintExtensions.m"; sourceTree = "<group>"; };
 		049D9EA31B7BC414007FFBB3 /* UIView+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KVConstraintExtensions.h"; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		04A153851B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVConstraintExtensionsExampleTests.m; sourceTree = "<group>"; };
 		04A16C5B1B83B8320000A854 /* UIViewController+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KVConstraintExtensions.h"; sourceTree = "<group>"; };
 		04A16C5C1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KVConstraintExtensions.m"; sourceTree = "<group>"; };
+		04A2601E1BA4186E00AD55F8 /* KVConstraintExtensionsMaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensionsMaster.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,10 +150,10 @@
 			name = "UIColor+KVExtensions";
 			sourceTree = "<group>";
 		};
-		049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensions */ = {
+		049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensionsMaster */ = {
 			isa = PBXGroup;
 			children = (
-				049D9EA01B7BC414007FFBB3 /* KVConstraintExtensions.h */,
+				04A2601E1BA4186E00AD55F8 /* KVConstraintExtensionsMaster.h */,
 				049D9EA31B7BC414007FFBB3 /* UIView+KVConstraintExtensions.h */,
 				049D9EA41B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m */,
 				04A16C5B1B83B8320000A854 /* UIViewController+KVConstraintExtensions.h */,
@@ -161,7 +161,7 @@
 				049D9EA11B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.h */,
 				049D9EA21B7BC414007FFBB3 /* NSLayoutConstraint+KVConstraintExtensions.m */,
 			);
-			path = KVConstraintExtensions;
+			path = KVConstraintExtensionsMaster;
 			sourceTree = SOURCE_ROOT;
 		};
 		04A1534E1B6FFBDC0004D1A9 = {
@@ -196,7 +196,7 @@
 		04A153601B6FFBDC0004D1A9 /* KVConstraintExtensionsExample */ = {
 			isa = PBXGroup;
 			children = (
-				049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensions */,
+				049D9E9F1B7BC414007FFBB3 /* KVConstraintExtensionsMaster */,
 				04A153691B6FFBDC0004D1A9 /* KV_AppDelegate.h */,
 				04A1536A1B6FFBDC0004D1A9 /* KV_AppDelegate.m */,
 				04A1536C1B6FFBDC0004D1A9 /* Main.storyboard */,

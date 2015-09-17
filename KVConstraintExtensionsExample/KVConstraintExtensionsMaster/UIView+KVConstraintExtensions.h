@@ -79,11 +79,11 @@
 - (void)updateModifyConstraintsWithAnimation:(void (^)(BOOL finished))completion;
 
 #pragma mark - Access Applied Constraint By Attributes From a specific View
-/* This method is used to access applied constraint by attribute of a constraints.
+/* This method is used to access already applied constraint (means expected constraint) constraint by attribute of a constraints.
  */
 - (NSLayoutConstraint*)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute;
 
-/* This method is also used to access applied constraint by attribute of a constraints with completion block.
+/* This method is also used to access already applied constraint (means expected constraint) by attribute of a constraints with completion block.
  */
 - (void)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *appliedConstraint))completion;
 
