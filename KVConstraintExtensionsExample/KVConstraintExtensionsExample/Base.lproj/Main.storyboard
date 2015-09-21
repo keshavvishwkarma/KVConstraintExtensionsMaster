@@ -367,10 +367,10 @@
             </objects>
             <point key="canvasLocation" x="666" y="621"/>
         </scene>
-        <!--View Controller-->
+        <!--Constraint With AnimationVC-->
         <scene sceneID="SZy-8C-axz">
             <objects>
-                <viewController id="m5v-O8-cXC" sceneMemberID="viewController">
+                <viewController id="m5v-O8-cXC" customClass="KV_ConstraintWithAnimationVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="232-mp-Nz4"/>
                         <viewControllerLayoutGuide type="bottom" id="wef-Fy-d1t"/>
@@ -378,22 +378,7 @@
                     <view key="view" contentMode="scaleToFill" id="4NG-mm-jje">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKf-kh-b9l">
-                                <rect key="frame" x="69" y="203" width="182" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-CondensedBold" family="American Typewriter" pointSize="28"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <size key="shadowOffset" width="-1" height="-1"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="vKf-kh-b9l" secondAttribute="centerX" id="76d-wE-rX0"/>
-                            <constraint firstAttribute="centerY" secondItem="vKf-kh-b9l" secondAttribute="centerY" constant="32" id="KMB-AM-Vuv"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="93W-hz-1Hm"/>
                 </viewController>
@@ -532,6 +517,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Xss-TA-EaY"/>
+        <segue reference="0Zo-bh-NlZ"/>
     </inferredMetricsTieBreakers>
 </document>

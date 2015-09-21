@@ -33,6 +33,7 @@
 		04A153841B6FFBDD0004D1A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04A153821B6FFBDD0004D1A9 /* InfoPlist.strings */; };
 		04A153861B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A153851B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m */; };
 		04A16C5D1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A16C5C1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m */; };
+		04A904391BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A904381BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		04A16C5B1B83B8320000A854 /* UIViewController+KVConstraintExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KVConstraintExtensions.h"; sourceTree = "<group>"; };
 		04A16C5C1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KVConstraintExtensions.m"; sourceTree = "<group>"; };
 		04A2601E1BA4186E00AD55F8 /* KVConstraintExtensionsMaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensionsMaster.h; sourceTree = "<group>"; };
+		04A904371BB082D500E12A72 /* KV_ConstraintWithAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KV_ConstraintWithAnimationVC.h; sourceTree = "<group>"; };
+		04A904381BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KV_ConstraintWithAnimationVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				049B24831B8A5CB7009ED565 /* KV_ApplyLayoutGuideConstraintVC.m */,
 				049B247C1B8A5C95009ED565 /* KV_ModifyConstraintVC.h */,
 				049B247D1B8A5C95009ED565 /* KV_ModifyConstraintVC.m */,
+				04A904371BB082D500E12A72 /* KV_ConstraintWithAnimationVC.h */,
+				04A904381BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m */,
 				049B247F1B8A5CA4009ED565 /* KV_ChangeStoryboardConstraintVC.h */,
 				049B24801B8A5CA4009ED565 /* KV_ChangeStoryboardConstraintVC.m */,
 				04A0682A1B8CFDC900984C9C /* KV_SiblingConstraintVC.h */,
@@ -339,6 +344,7 @@
 				04A0682C1B8CFDC900984C9C /* KV_SiblingConstraintVC.m in Sources */,
 				04A16C5D1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m in Sources */,
 				04A153711B6FFBDC0004D1A9 /* KV_ViewController.m in Sources */,
+				04A904391BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m in Sources */,
 				049B24781B8A5C77009ED565 /* KV_MultipleConstraintsVC.m in Sources */,
 				049D9EA61B7BC414007FFBB3 /* UIView+KVConstraintExtensions.m in Sources */,
 				049B247E1B8A5C95009ED565 /* KV_ModifyConstraintVC.m in Sources */,
