@@ -33,6 +33,7 @@ UIKIT_EXTERN const CGFloat defualtMultiplier;
 UIKIT_EXTERN const CGFloat defualtConstant;
 UIKIT_EXTERN const NSLayoutRelation defualtRelation;
 UIKIT_EXTERN const CGFloat defualtLessMaxPriority;
+UIKIT_EXTERN const CGFloat defualt_iPadRatio;
 
 + (CGFloat)defualtSpacingBetweenSiblings;
 + (CGFloat)defualtSpacingBetweenSuperview;
@@ -40,7 +41,7 @@ UIKIT_EXTERN const CGFloat defualtLessMaxPriority;
 /* This method is used to trace the allready added constraints on receiver view
  */
 + (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute;
-
++ (BOOL)isSelfConstraintAttribute:(NSLayoutAttribute)attribute;
 - (BOOL)isEqualToConstraint:(NSLayoutConstraint *)aConstraint;
 - (NSLayoutConstraint *)swapConstraintItems;
 - (NSLayoutConstraint *)modifyConstraintRelatedBy:(NSLayoutRelation)relation;

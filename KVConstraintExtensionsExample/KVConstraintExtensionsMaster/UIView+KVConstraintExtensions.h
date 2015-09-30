@@ -78,6 +78,10 @@
 
 - (void)updateModifyConstraintsWithAnimation:(void (^)(BOOL finished))completion;
 
+- (void)updateAppliedConstraintConstantValueByAttribute:(NSLayoutAttribute)attribute withConstantRatio:(CGFloat)constantRatio;
+
+- (void)updateAppliedConstraintConstantValueForIpadByAttribute:(NSLayoutAttribute)attribute;
+
 #pragma mark - Access Applied Constraint By Attributes From a specific View
 /* This method is used to access already applied constraint (means expected constraint) constraint by attribute of a constraints.
  */
@@ -86,6 +90,10 @@
 /* This method is also used to access already applied constraint (means expected constraint) by attribute of a constraints with completion block.
  */
 - (void)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *appliedConstraint))completion;
+
+/* This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
+ */
+- (NSLayoutConstraint*)accessAppliedConstraintFromSiblingViewByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView;
 
 #pragma mark - Apply Pin Edges to Superview
 /* These methods are used to applied\add constraints in supreview of caller(self).

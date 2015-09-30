@@ -161,11 +161,46 @@
     } completion:completion];
 }
 
+- (void)updateAppliedConstraintConstantValueForIpadByAttribute:(NSLayoutAttribute)attribute{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self updateAppliedConstraintConstantValueByAttribute:attribute withConstantRatio:defualt_iPadRatio];
+    }
+}
+
+- (void)updateAppliedConstraintConstantValueByAttribute:(NSLayoutAttribute)attribute withConstantRatio:(CGFloat)constantRatio{
+    [self accessAppliedConstraintByAttribute:attribute].constant *= constantRatio;
+}
+
 #pragma mark - Access Applied Constraint By Attributes From a specific View
 
 - (NSLayoutConstraint*)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute {
     return [NSLayoutConstraint appliedConstraintForView:self attribute:attribute];
 }
+
+- (NSLayoutConstraint*)accessAppliedConstraintFromSiblingViewByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView {
+   
+    NSAssert(self!=otherSiblingView, @"both view must be sibling not same.");
+
+    NSLayoutConstraint *appliedConstraint = nil;
+    
+    BOOL isSelfConstraintAttributes = (([NSLayoutConstraint isSelfConstraintAttribute:attribute])||([NSLayoutConstraint isSelfConstraintAttribute:toAttribute]));
+    if (isSelfConstraintAttributes && ( attribute != toAttribute )) {
+        KVLog(@"You should have provided valid sibling atributes of constraints.");
+    }
+    else
+    {
+        NSLayoutConstraint *prepareConstraintForSiblingView =  [self prepareConstraintFromSiblingViewAttribute:attribute toAttribute:toAttribute ofView:otherSiblingView multiplier:defualtMultiplier];
+        
+        appliedConstraint = [self.superview.constraints containsAppliedConstraint:prepareConstraintForSiblingView];
+        
+        if (!appliedConstraint) {
+            appliedConstraint = [self.superview.constraints containsAppliedConstraint:[prepareConstraintForSiblingView swapConstraintItems]];
+        }
+    }
+    
+    return appliedConstraint;
+}
+
 
 - (void)accessAppliedConstraintByAttribute:(NSLayoutAttribute)attribute completion:(void (^)(NSLayoutConstraint *appliedConstraint))completion
 {

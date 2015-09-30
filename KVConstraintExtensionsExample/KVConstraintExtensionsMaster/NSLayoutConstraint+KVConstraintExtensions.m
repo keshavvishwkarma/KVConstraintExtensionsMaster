@@ -33,6 +33,7 @@ const CGFloat defualtMultiplier = 1.0f;
 const CGFloat defualtConstant =  0.0f;
 const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
 const CGFloat defualtLessMaxPriority = 999.99996 ;
+const CGFloat defualt_iPadRatio = 4.0/3.0;
 
 @implementation NSLayoutConstraint (KVConstraintExtensions)
 

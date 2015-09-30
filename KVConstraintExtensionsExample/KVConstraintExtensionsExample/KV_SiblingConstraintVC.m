@@ -30,13 +30,23 @@
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
      */
     [self applyConstaint];
+
+    // for scrollView
+    [self configureScrollViewHierarchyAndApplyConstraint];
 }
 
 
 -(void)applyConstaint
 {
     // here setting the constraints for containerView
-    [self.containerView applyConstraintForCenterInSuperview];
+    [self.containerView applyConstraintForHorizontallyCenterInSuperview];
+    
+    [self.containerView applyCenterYPinConstraintToSuperviewWithPadding:60];
+    
+    // this method is only used to increase the Constant Value of the CenterY constraint on Ipad with its Ratio
+
+    [self.containerView updateAppliedConstraintConstantValueForIpadByAttribute:NSLayoutAttributeCenterY];
+
     [self.containerView applyEqualHeightRatioPinConstrainToSuperview:0.5];
     [self.containerView applyEqualWidthRatioPinConstrainToSuperview:0.7];
     
@@ -60,8 +70,14 @@
     // now here setting the equal width constraints for all subviews of containerView.
     [_firstView applyConstraintFromSiblingViewAttribute:NSLayoutAttributeWidth toAttribute:NSLayoutAttributeWidth ofView:_secondView spacing:0];
     [_secondView applyConstraintFromSiblingViewAttribute:NSLayoutAttributeWidth toAttribute:NSLayoutAttributeWidth ofView:_thirdView spacing:0];
-}
+    
+    
+    // Here we are trying to accessing the constraints between sibling views
+    NSLayoutConstraint *appliedConstrint = [_secondView accessAppliedConstraintFromSiblingViewByAttribute:NSLayoutAttributeRight toAttribute:NSLayoutAttributeLeft ofView:_thirdView];
 
+    KVLog(@"%@",appliedConstrint);
+    
+}
 
 - (void)createAndConfigureViewHierarchy
 {
@@ -76,9 +92,7 @@
     self.secondView.backgroundColor = [UIColor Red];
     
     self.thirdView = [UIView prepareNewViewForAutoLayout];
-    self.thirdView.backgroundColor = [UIColor LightGreen];
-    
-    self.view.backgroundColor = [UIColor Teal];
+    self.thirdView.backgroundColor = [UIColor Teal];
     
     // Here configuring view hierarchy
     [self.containerView addSubview:self.firstView];
@@ -88,5 +102,82 @@
     [self.view addSubview:self.containerView];
     
 }
+
+
+- (void)configureScrollViewHierarchyAndApplyConstraint
+{
+    UIScrollView *scrollView = [UIScrollView prepareNewViewForAutoLayout];
+    scrollView.backgroundColor = [UIColor Brown];
+
+    [self.view addSubview:scrollView];
+    UIView *containerView = [UIView prepareNewViewForAutoLayout];
+    containerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
+
+    [scrollView addSubview:containerView];
+    
+    CGFloat space = 8;
+
+    UIEdgeInsets contentInset = UIEdgeInsetsMake(20, space, HUGE_VALF, space);
+    [scrollView applyConstraintFitToSuperviewContentInset:contentInset];
+    [scrollView applyHeightConstrain:100];
+    
+    // this method is only used to increase the Constant Value of the height constraint on Ipad with its Ratio
+    [scrollView updateAppliedConstraintConstantValueForIpadByAttribute:NSLayoutAttributeHeight];
+    
+    // 1. Define the containerView y Position and height
+    [containerView applyConstraintForVerticallyCenterInSuperview];
+    
+    // Here I'm applying the height constraints based on ratio
+    [containerView applyEqualHeightRatioPinConstrainToSuperview:(1-(2*space)*0.01)];
+
+    // 1. Define the containerView X Position
+    [containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:space];
+    
+    NSInteger count  = 20;
+    UIButton *previousContentButton = nil;
+
+    for (NSInteger i = 0; i < count; i++)
+	{
+        UIButton *contentButton = [UIButton prepareNewViewForAutoLayout];
+        if (i&1) {
+            [contentButton setBackgroundColor:[UIColor Green]];
+        }else{
+            [contentButton setBackgroundColor:[UIColor Red]];
+        }
+        
+        [contentButton setTag:i];
+        [contentButton.layer setBorderWidth:1.5f];
+        [contentButton.layer setBorderColor:[UIColor Indigo].CGColor];
+        [containerView addSubview:contentButton];
+        
+        // Define the contentButton Size
+        [contentButton applyTopAndBottomPinConstraintToSuperviewWithPadding:space];
+
+        [contentButton applyAspectRatioConstrain];
+        //OR
+        //  [contentButton applyWidthConstraint:60.0];
+        
+        if (i == 0) // for first
+        {
+            [contentButton applyLeadingPinConstraintToSuperviewWithPadding:space];
+        }
+        else if (i == count-1) // for last
+        {
+            [previousContentButton applyConstraintFromSiblingViewAttribute:NSLayoutAttributeTrailing toAttribute:NSLayoutAttributeLeading ofView:contentButton spacing:space];
+
+            [contentButton applyTrailingPinConstraintToSuperviewWithPadding:space];
+        }
+        else
+        {
+            [previousContentButton applyConstraintFromSiblingViewAttribute:NSLayoutAttributeTrailing toAttribute:NSLayoutAttributeLeading ofView:contentButton spacing:space];
+        }
+        
+        previousContentButton = contentButton;
+    }
+    
+    [containerView updateModifyConstraints];
+    
+}
+
 
 @end
