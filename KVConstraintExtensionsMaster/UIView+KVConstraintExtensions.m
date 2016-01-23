@@ -86,16 +86,16 @@
 #pragma mark - Prepare constraint of one sibling view to other sibling view and add it into its superview view.
 
 - (NSLayoutConstraint *)prepareConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView relation:(NSLayoutRelation)relation {
-    NSMutableSet * set = [NSMutableSet setWithArray:@[self.superview,otherSiblingView.superview]];
-    NSAssert((set.count == 1), @"All the sibling views must belong to same superview");
+//    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
+    NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
     return [self.class prepareConastrainForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:relation multiplier:defualtMultiplier];
 }
 
 - (NSLayoutConstraint *)prepareConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView multiplier:(CGFloat)multiplier {
     NSAssert(multiplier!=INFINITY, @"ratio of spacing between sybings view must not be INFINITY.");
-    NSMutableSet * set = [NSMutableSet setWithArray:@[self.superview,otherSiblingView.superview]];
-    NSAssert((set.count == 1), @"All the sibling views must belong to same superview");
+//    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
+    NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
     return [self.class prepareConastrainForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:defualtRelation multiplier:multiplier];
 }
