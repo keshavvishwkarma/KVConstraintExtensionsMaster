@@ -32,13 +32,13 @@
 {
     [[self containerView] applyTopPinConstraintToSuperviewWithPadding:50.0f];
     [[self containerView] applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:20];
-    [[self containerView] applyHeightConstrain:50];
+    [[self containerView] applyHeightConstraint:50];
     
     [[self textField] applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(8, 5, 4, 5)];
     [[self headingLabel] applyConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] spacing:defualtConstant];
     
     [[self headingLabel] applyLeftPinConstraintToSuperviewWithPadding:5];
-    [[self headingLabel] applyHeightConstrain:16.0f];
+    [[self headingLabel] applyHeightConstraint:16.0f];
 }
 
 - (void)createAndConfigureViewHierarchy

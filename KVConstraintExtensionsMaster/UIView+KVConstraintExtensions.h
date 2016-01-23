@@ -143,7 +143,7 @@
  */
 - (void)applyAspectRatioConstrain;
 - (void)applyWidthConstraint:(CGFloat)width;
-- (void)applyHeightConstrain:(CGFloat) height;
+- (void)applyHeightConstraint:(CGFloat) height;
 
 #pragma mark - Apply Constraint between sibling views
 /* This method is used to apply\add constraint between sibling views.

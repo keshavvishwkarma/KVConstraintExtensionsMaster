@@ -346,7 +346,7 @@
         KVLog(@"Width of the view con not be INFINITY");
     }
 }
-- (void)applyHeightConstrain:(CGFloat) height {
+- (void)applyHeightConstraint:(CGFloat) height {
     if (height!=INFINITY) {
         [self applyPreparedConastrainInView:[self prepareSelfConastrain:NSLayoutAttributeHeight constant:height]];
     } else {

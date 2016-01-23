@@ -80,7 +80,7 @@
         [self.containerView addSubview:contentButton];
         
         // 2. Define the contentButton Size
-        [contentButton applyHeightConstrain:height];
+        [contentButton applyHeightConstraint:height];
         [contentButton applyWidthConstraint:width];
         
         // 3. Define the contentButton Position
@@ -106,7 +106,7 @@
 [self.secondView applyCenterYPinConstraintToSuperviewWithPadding:50];
 
 // now applied constraints are sufficient but still view will not display/visible because view is not determine any height from the applied constraints so by default view set its height zero. So better is to give some height
-[self.secondView applyHeightConstrain:80];
+[self.secondView applyHeightConstraint:80];
 
 }
 

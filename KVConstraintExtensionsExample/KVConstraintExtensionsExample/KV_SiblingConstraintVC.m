@@ -119,7 +119,7 @@
 
     UIEdgeInsets contentInset = UIEdgeInsetsMake(20, space, HUGE_VALF, space);
     [scrollView applyConstraintFitToSuperviewContentInset:contentInset];
-    [scrollView applyHeightConstrain:100];
+    [scrollView applyHeightConstraint:100];
     
     // this method is only used to increase the Constant Value of the height constraint on Ipad with its Ratio
     [scrollView updateAppliedConstraintConstantValueForIpadByAttribute:NSLayoutAttributeHeight];

@@ -10,29 +10,29 @@
 	<string>KVConstraintExtensionsExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>92F55AED-F803-4742-889E-7D98788AFAA8</key>
+		<key>AF0766E9C80E85306E90F47CE2F98A09DCF73E5F</key>
 		<string>https://github.com/keshavvishwkarma/KVConstraintExtensionsMaster.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>KVConstraintExtensionsExample/KVConstraintExtensionsExample.xcodeproj/project.xcworkspace</string>
+	<string>KVConstraintExtensionsExample/KVConstraintExtensionsExample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>92F55AED-F803-4742-889E-7D98788AFAA8</key>
+		<key>AF0766E9C80E85306E90F47CE2F98A09DCF73E5F</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/keshavvishwkarma/KVConstraintExtensionsMaster.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>92F55AED-F803-4742-889E-7D98788AFAA8</string>
+	<string>AF0766E9C80E85306E90F47CE2F98A09DCF73E5F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>92F55AED-F803-4742-889E-7D98788AFAA8</string>
+			<string>AF0766E9C80E85306E90F47CE2F98A09DCF73E5F</string>
 			<key>IDESourceControlWCCName</key>
 			<string>KVConstraintExtensionsMaster</string>
 		</dict>
