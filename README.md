@@ -21,7 +21,21 @@
  A method which has prefixe ``` prepare ``` - is used to either prepare the constraint or prepare the view for the constraint.
  A method which has prefixe ``` apply ``` - is used to apply\add the constraint into its appropriate view.
 
-``` Usage ```
+[![CI Status](http://img.shields.io/travis/keshav vishwkarma/KVConstraintExtensionsMaster.svg?style=flat)](https://travis-ci.org/keshav vishwkarma/KVConstraintExtensionsMaster)
+[![Version](https://img.shields.io/cocoapods/v/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
+[![License](https://img.shields.io/cocoapods/l/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
+[![Platform](https://img.shields.io/cocoapods/p/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
+
+## Installation
+
+KVConstraintExtensionsMaster is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "KVConstraintExtensionsMaster"
+```
+
+``` Manually ```
 -----
 
 - drag the KVConstraintExtensionsMaster folder into your project.
