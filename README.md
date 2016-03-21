@@ -1,26 +1,84 @@
 # KVConstraintExtensionsMaster
+
+`KVConstraintExtensionsMaster` makes `auto layout constraint` much easier to use from code. It provides simple, more readable,  rich code reusability and powerful API for creating new, accessing, & modifying existing constraints by layout attribute.
+
+Main motive of `KVConstraintExtensionsMaster` to reduce the overhead of developers while working with `NSLayoutConstraint` to produce `responsive UI(User Interface) design`.
+
 [![CI Status](http://img.shields.io/travis/keshav vishwkarma/KVConstraintExtensionsMaster.svg?style=flat)](https://travis-ci.org/keshav vishwkarma/KVConstraintExtensionsMaster)
 [![Version](https://img.shields.io/cocoapods/v/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
 [![Platform](https://img.shields.io/cocoapods/p/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
 
 ## Installation
 
-KVConstraintExtensionsMaster is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Installation with CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C projects.
+ which automates and simplifies the process of using 3rd-party libraries in your projects.
+ See the [Get Started](https://cocoapods.org/#get_started) section for more details.
+ You can install it with the following command:
+
+``` bash
+$ gem install cocoapods
+```
+#### Podfile
+
+To integrate KVConstraintExtensionsMaster into your Xcode project using [CocoaPods](http://cocoapods.org), simply add the following line to your `Podfile`:
 
 ```ruby
 pod "KVConstraintExtensionsMaster"
 ```
+> If you are using `Swift`, be sure to add `use_frameworks!` in your `Podfile` and set your target to iOS 8+:
+
+```
+platform :ios, '8.0'
+use_frameworks!
+pod "KVConstraintExtensionsMaster"
+```
+
+Then, run the following command from Terminal:
+
+```
+$ pod install
+```
+You should open the `{Project}.xcworkspace` instead of the `{Project}.xcodeproj` after you installed anything from CocoaPods.
+
+```
+$ open *.xcworkspace 
+```
+
+### Installation with Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To install the carthage tool, you can use [Homebrew](http://brew.sh) or [Carthage.pkg](https://github.com/Carthage/Carthage/releases).
+
+``` bash
+$ brew update
+$ brew install carthage
+```
+#### Cartfile
+
+To integrate KVConstraintExtensionsMaster into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+``` ogdl
+github "keshavvishwkarma/KVConstraintExtensionsMaster"
+```
+
+Then, run the following command to build the `KVConstraintExtensionsMaster` framework:
+``` bash
+$ carthage update
+```
+Now drag the built `KVConstraintExtensionsMaster.framework` into your Xcode project.
 
 ``` Manually ```
 -----
 
-- drag the KVConstraintExtensionsMaster folder into your project.
-- import the KVConstraintExtensionsMaster.h file in class
+- Drag and drop the KVConstraintExtensionsMaster folder into your project.
+- Import the KVConstraintExtensionsMaster.h header file in class
 ```objective-c
 #import "KVConstraintExtensionsMaster.h"
 ```
+> If you are using Swift, you have to import the ```KVConstraintExtensionsMaster.h``` header file In the ```{Project}-Bridging-Heade.h``` header file.
 
 ## -----: Go Easy On Programatically Constraints :----
 ### ``` + Points ```
