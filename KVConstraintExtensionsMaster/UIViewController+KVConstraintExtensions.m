@@ -82,13 +82,13 @@
 }
 
 
-- (void)applyTopLayoutGuideConastrainToView:(UIView *)toView WithPadding:(CGFloat)padding {
+- (void)applyTopLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding {
     NSLayoutConstraint *preparedConstraint = [self prepareLayoutGuideConstraintToView:toView WithPadding:padding isTopLayoutGuide:YES];
-    [self.view applyPreparedConastrainInView:preparedConstraint];
+    [self.view applyPreparedConstraintInView:preparedConstraint];
 }
-- (void)applyBottomLayoutGuideConastrainToView:(UIView *)toView WithPadding:(CGFloat)padding {
+- (void)applyBottomLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding {
     NSLayoutConstraint *preparedConstraint = [self prepareLayoutGuideConstraintToView:toView WithPadding:padding isTopLayoutGuide:NO];
-    [self.view applyPreparedConastrainInView:preparedConstraint];
+    [self.view applyPreparedConstraintInView:preparedConstraint];
 }
 
 - (NSLayoutConstraint*)accessAppliedTopLayoutGuideConstraintFromView:(UIView *)fromView{

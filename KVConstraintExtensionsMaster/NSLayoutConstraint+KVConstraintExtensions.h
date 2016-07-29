@@ -38,7 +38,7 @@ UIKIT_EXTERN const CGFloat defualt_iPadRatio;
 + (CGFloat)defualtSpacingBetweenSiblings;
 + (CGFloat)defualtSpacingBetweenSuperview;
 + (BOOL)recognizedDirectionByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toTttribute;
-/* This method is used to trace the allready added constraints on receiver view
+/** This method is used to trace the allready added constraints on receiver view
  */
 + (NSLayoutConstraint *)appliedConstraintForView:(UIView*)aView attribute:(NSLayoutAttribute)attribute;
 + (BOOL)isSelfConstraintAttribute:(NSLayoutAttribute)attribute;

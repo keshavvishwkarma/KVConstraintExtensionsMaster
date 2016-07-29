@@ -40,9 +40,9 @@
     // apply constrint with LayoutGuides of viewController
     [[self containerView] applyConstraintFitToSuperviewHorizontally];
     
-    [self applyTopLayoutGuideConastrainToView:[self containerView] WithPadding:0];
+    [self applyTopLayoutGuideConstraintToView:[self containerView] WithPadding:0];
     
-    [self applyBottomLayoutGuideConastrainToView:[self containerView] WithPadding:54];
+    [self applyBottomLayoutGuideConstraintToView:[self containerView] WithPadding:54];
     
     //change the priority of constraint
     [self.containerView changeAppliedConstraintPriority:defualtLessMaxPriority forAttribute:NSLayoutAttributeLeading];

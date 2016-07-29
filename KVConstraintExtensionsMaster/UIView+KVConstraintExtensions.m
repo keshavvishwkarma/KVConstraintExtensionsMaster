@@ -45,7 +45,7 @@
 
 #pragma mark - private constraint methods for views
 
-+ (NSLayoutConstraint *)prepareConastrainForView:(UIView*)firstView  attribute:(NSLayoutAttribute)attribute1 secondView:(UIView*)secondView attribute:(NSLayoutAttribute)attribute2 relation:(NSLayoutRelation)relation multiplier:(CGFloat)multiplier
++ (NSLayoutConstraint *)prepareConstraintForView:(UIView*)firstView  attribute:(NSLayoutAttribute)attribute1 secondView:(UIView*)secondView attribute:(NSLayoutAttribute)attribute2 relation:(NSLayoutRelation)relation multiplier:(CGFloat)multiplier
 {
     NSAssert((firstView||secondView), @"both firstView & secondView must not be nil.");
     NSAssert(multiplier!=INFINITY, @"Multiplier/Ratio of view must not be INFINITY.");
@@ -53,25 +53,25 @@
     return [NSLayoutConstraint constraintWithItem:firstView attribute:attribute1 relatedBy:relation toItem:secondView attribute:attribute2 multiplier:multiplier constant:defualtConstant];
 }
 
-- (NSLayoutConstraint *)prepareSelfConastrain:(NSLayoutAttribute)attribute constant:(CGFloat)constant
+- (NSLayoutConstraint *)prepareSelfConstraint:(NSLayoutAttribute)attribute constant:(CGFloat)constant
 {
-    NSLayoutConstraint *prepareSelfConastrain = [self.class prepareConastrainForView:self attribute:attribute secondView:nil attribute:NSLayoutAttributeNotAnAttribute relation:defualtRelation multiplier:defualtMultiplier];
-    [prepareSelfConastrain setConstant:constant];
-    return prepareSelfConastrain;
+    NSLayoutConstraint *prepareSelfConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:nil attribute:NSLayoutAttributeNotAnAttribute relation:defualtRelation multiplier:defualtMultiplier];
+    [prepareSelfConstraint setConstant:constant];
+    return prepareSelfConstraint;
 }
 
 #pragma mark - Generalized public constraint methods for views
 
 - (NSLayoutConstraint *)prepareConstraintToSuperviewAttribute:(NSLayoutAttribute)attribute1 attribute:(NSLayoutAttribute)attribute2 relation:(NSLayoutRelation)relation
 {
-    return [self.class prepareConastrainForView:self attribute:attribute1 secondView:[self superview] attribute:attribute2 relation:relation multiplier:defualtMultiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute1 secondView:[self superview] attribute:attribute2 relation:relation multiplier:defualtMultiplier];
 }
 
 - (NSLayoutConstraint *)prepareEqualRelationPinConstraintToSuperview:(NSLayoutAttribute)attribute constant:(CGFloat)constant
 {
-    NSLayoutConstraint *preparePinConastrain = [self prepareConstraintToSuperviewAttribute:attribute attribute:attribute relation:defualtRelation];
-    [preparePinConastrain setConstant:constant];
-    return preparePinConastrain;
+    NSLayoutConstraint *preparePinConstraint = [self prepareConstraintToSuperviewAttribute:attribute attribute:attribute relation:defualtRelation];
+    [preparePinConstraint setConstant:constant];
+    return preparePinConstraint;
 }
 
 - (NSLayoutConstraint *)prepareEqualRelationPinRatioConstraintToSuperview:(NSLayoutAttribute)attribute multiplier:(CGFloat)multiplier
@@ -79,8 +79,8 @@
     NSAssert(multiplier!=INFINITY, @"Multiplier/Ratio of view must not be INFINITY.");
     
     // note if ratio is equal to zero then its ratio prefered 1.0 that is defualtMultiplier
-    NSLayoutConstraint *preparedPinRatioConastrain = [self.class prepareConastrainForView:self attribute:attribute secondView:[self superview] attribute:attribute relation:defualtRelation multiplier:multiplier?multiplier:defualtMultiplier];
-    return preparedPinRatioConastrain;
+    NSLayoutConstraint *preparedPinRatioConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:[self superview] attribute:attribute relation:defualtRelation multiplier:multiplier?multiplier:defualtMultiplier];
+    return preparedPinRatioConstraint;
 }
 
 #pragma mark - Prepare constraint of one sibling view to other sibling view and add it into its superview view.
@@ -89,7 +89,7 @@
 //    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
     NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
-    return [self.class prepareConastrainForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:relation multiplier:defualtMultiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:relation multiplier:defualtMultiplier];
 }
 
 - (NSLayoutConstraint *)prepareConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView multiplier:(CGFloat)multiplier {
@@ -97,7 +97,7 @@
 //    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
     NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
-    return [self.class prepareConastrainForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:defualtRelation multiplier:multiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:defualtRelation multiplier:multiplier];
 }
 
 #pragma mark - Add constraints cumulative
@@ -105,7 +105,7 @@
 /** This is the common methods two add cumulative constraint in a view
  * for this you need to call it according to view (self or Superview)
  */
-- (void)applyPreparedConastrainInView:(NSLayoutConstraint *)constraint {
+- (void)applyPreparedConstraintInView:(NSLayoutConstraint *)constraint {
     NSLayoutConstraint *appliedConstraint = [self.constraints containsAppliedConstraint:constraint];
     // if this constraint is already added then it update the constraint values else added new constraint
     if (appliedConstraint) {
@@ -138,7 +138,7 @@
     [[self accessAppliedConstraintByAttribute:attribute] setPriority:priority];
 }
 
-- (void)replaceAppliedConastrainInView:(NSLayoutConstraint *)appliedConstraint replaceBy:(NSLayoutConstraint *)constraint {
+- (void)replaceAppliedConstraintInView:(NSLayoutConstraint *)appliedConstraint replaceBy:(NSLayoutConstraint *)constraint {
     NSAssert(constraint!=nil, @" modifiedConstraint must not be nil");
     
     if ([appliedConstraint isEqualToConstraint:constraint]){
@@ -216,7 +216,7 @@
 - (void)applyPreparedEqualRelationPinConstraintToSuperview:(NSLayoutAttribute)attribute constant:(CGFloat)constant {
     NSAssert(self.superview, @"You should have addSubView %@ on any other its called's Superview ", self);
     NSAssert(constant!=INFINITY, @"Constant must not be INFINITY.");
-    [self.superview applyPreparedConastrainInView:[self prepareEqualRelationPinConstraintToSuperview:attribute constant:constant]];
+    [self.superview applyPreparedConstraintInView:[self prepareEqualRelationPinConstraintToSuperview:attribute constant:constant]];
 }
 
 - (void)applyLeftPinConstraintToSuperviewWithPadding:(CGFloat)padding {
@@ -282,11 +282,11 @@
     NSLayoutConstraint *relationRatioPinConstraint = [self prepareEqualRelationPinRatioConstraintToSuperview:attribute multiplier:ratio];
     if (relationRatioPinConstraint) {
         [relationRatioPinConstraint setConstant:padding];
-        [self.superview applyPreparedConastrainInView:relationRatioPinConstraint];
+        [self.superview applyPreparedConstraintInView:relationRatioPinConstraint];
     }
 }
 
-/*  Center horizontally and Vertically  */
+/**  Center horizontally and Vertically  */
 - (void)applyConstraintForCenterInSuperview {
     [self applyCenterXPinConstraintToSuperviewWithPadding:defualtConstant];
     [self applyCenterYPinConstraintToSuperviewWithPadding:defualtConstant];
@@ -305,7 +305,7 @@
     [self applyConstraintFitToSuperviewContentInset:UIEdgeInsetsZero];
     
     // OR Second way to do the same thing
-    /* [self applyEqualHeightPinConstrainToSuperview];
+    /** [self applyEqualHeightPinConstrainToSuperview];
      [self applyEqualWidthPinConstrainToSuperview];
      [self applyConstraintForCenterInSuperview];
      */
@@ -337,18 +337,18 @@
 
 #pragma mark - Apply self constraints
 - (void)applyAspectRatioConstrain {
-    [self applyPreparedConastrainInView:[self.class prepareConastrainForView:self attribute:NSLayoutAttributeWidth secondView:self attribute:NSLayoutAttributeHeight relation:defualtRelation multiplier:defualtMultiplier]];
+    [self applyPreparedConstraintInView:[self.class prepareConstraintForView:self attribute:NSLayoutAttributeWidth secondView:self attribute:NSLayoutAttributeHeight relation:defualtRelation multiplier:defualtMultiplier]];
 }
 - (void)applyWidthConstraint:(CGFloat)width {
     if (width!=INFINITY) {
-        [self applyPreparedConastrainInView:[self prepareSelfConastrain:NSLayoutAttributeWidth constant:width]];
+        [self applyPreparedConstraintInView:[self prepareSelfConstraint:NSLayoutAttributeWidth constant:width]];
     }else {
         KVLog(@"Width of the view con not be INFINITY");
     }
 }
 - (void)applyHeightConstraint:(CGFloat) height {
     if (height!=INFINITY) {
-        [self applyPreparedConastrainInView:[self prepareSelfConastrain:NSLayoutAttributeHeight constant:height]];
+        [self applyPreparedConstraintInView:[self prepareSelfConstraint:NSLayoutAttributeHeight constant:height]];
     } else {
         KVLog(@"Height of the view con not be INFINITY");
     }
@@ -363,9 +363,9 @@
     [prepareConstraintForSiblingView setConstant:spacing];
     
     if ([NSLayoutConstraint recognizedDirectionByAttribute:attribute toAttribute:toAttribute]) {
-        [self.superview applyPreparedConastrainInView:[prepareConstraintForSiblingView swapConstraintItems]];
+        [self.superview applyPreparedConstraintInView:[prepareConstraintForSiblingView swapConstraintItems]];
     }else {
-        [self.superview applyPreparedConastrainInView:prepareConstraintForSiblingView];
+        [self.superview applyPreparedConstraintInView:prepareConstraintForSiblingView];
     }
 }
 
