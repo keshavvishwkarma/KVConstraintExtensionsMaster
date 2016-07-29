@@ -14,13 +14,13 @@ Main motive of `KVConstraintExtensionsMaster` to reduce the overhead of develope
 
 ### Installation with CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C projects.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C Cocoa projects.
  which automates and simplifies the process of using 3rd-party libraries in your projects.
  See the [Get Started](https://cocoapods.org/#get_started) section for more details.
  You can install it with the following command:
 
 ``` bash
-$ gem install cocoapods
+$ sudo gem install cocoapods
 ```
 #### Podfile
 
