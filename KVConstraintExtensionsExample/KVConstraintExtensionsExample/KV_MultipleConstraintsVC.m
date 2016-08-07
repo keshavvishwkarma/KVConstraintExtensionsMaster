@@ -29,9 +29,6 @@
     
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
      */
-    // NOTE :- run at a time either applyConstaint1 or applyConstaint2 methods
-
-//    [self applyConstaint1];
     [self applyConstaint2];
     [self applyConstaint3];
 
@@ -49,13 +46,13 @@
 
 }
 
-- (void)applyConstaint1
-{
-    // Demostrate width and height Ratio Constrain programatically
-    [self.containerView applyConstraintForCenterInSuperview];
-    [self.containerView applyEqualWidthRatioPinConstrainToSuperview:0.6];
-    [self.containerView applyEqualHeightRatioPinConstrainToSuperview:0.4];
-}
+//- (void)applyConstaint1
+//{
+//    // Demostrate width and height Ratio Constrain programatically
+//    [self.containerView applyConstraintForCenterInSuperview];
+//    [self.containerView applyEqualWidthRatioPinConstrainToSuperview:0.6];
+//    [self.containerView applyEqualHeightRatioPinConstrainToSuperview:0.4];
+//}
 
 - (void)applyConstaint2
 {

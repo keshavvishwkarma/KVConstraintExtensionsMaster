@@ -34,6 +34,7 @@
 		04A153861B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A153851B6FFBDD0004D1A9 /* KVConstraintExtensionsExampleTests.m */; };
 		04A16C5D1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A16C5C1B83B8320000A854 /* UIViewController+KVConstraintExtensions.m */; };
 		04A904391BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A904381BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m */; };
+		6B1533FD1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1533FC1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		04A2601E1BA4186E00AD55F8 /* KVConstraintExtensionsMaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintExtensionsMaster.h; sourceTree = "<group>"; };
 		04A904371BB082D500E12A72 /* KV_ConstraintWithAnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KV_ConstraintWithAnimationVC.h; sourceTree = "<group>"; };
 		04A904381BB082D500E12A72 /* KV_ConstraintWithAnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KV_ConstraintWithAnimationVC.m; sourceTree = "<group>"; };
+		6B1533FB1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KV_ApplySimpleRatioConstraintVC.h; sourceTree = "<group>"; };
+		6B1533FC1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KV_ApplySimpleRatioConstraintVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				049B24731B8A5B78009ED565 /* KV_ApplySimpleConstraintVC.m */,
 				049B24761B8A5C77009ED565 /* KV_MultipleConstraintsVC.h */,
 				049B24771B8A5C77009ED565 /* KV_MultipleConstraintsVC.m */,
+				6B1533FB1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.h */,
+				6B1533FC1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.m */,
 				049B24791B8A5C87009ED565 /* KV_ApplyRatioConstraintVC.h */,
 				049B247A1B8A5C87009ED565 /* KV_ApplyRatioConstraintVC.m */,
 				049B24821B8A5CB7009ED565 /* KV_ApplyLayoutGuideConstraintVC.h */,
@@ -352,6 +357,7 @@
 				049B24811B8A5CA4009ED565 /* KV_ChangeStoryboardConstraintVC.m in Sources */,
 				04A153671B6FFBDC0004D1A9 /* main.m in Sources */,
 				049B247B1B8A5C87009ED565 /* KV_ApplyRatioConstraintVC.m in Sources */,
+				6B1533FD1D57F3C600262018 /* KV_ApplySimpleRatioConstraintVC.m in Sources */,
 				049B24841B8A5CB7009ED565 /* KV_ApplyLayoutGuideConstraintVC.m in Sources */,
 				049B24741B8A5B78009ED565 /* KV_ApplySimpleConstraintVC.m in Sources */,
 				04A1536B1B6FFBDC0004D1A9 /* KV_AppDelegate.m in Sources */,
