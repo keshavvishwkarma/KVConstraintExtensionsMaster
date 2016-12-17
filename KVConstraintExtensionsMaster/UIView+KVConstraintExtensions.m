@@ -173,6 +173,12 @@
     }
 }
 
+- (void)updateAppliedConstraintConstantValueForIphoneByAttribute:(NSLayoutAttribute)attribute{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self updateAppliedConstraintConstantValueByAttribute:attribute withConstantRatio:1.0/defualt_iPadRatio];
+    }
+}
+
 - (void)updateAppliedConstraintConstantValueByAttribute:(NSLayoutAttribute)attribute withConstantRatio:(CGFloat)constantRatio{
     [self accessAppliedConstraintByAttribute:attribute].constant *= constantRatio;
 }
