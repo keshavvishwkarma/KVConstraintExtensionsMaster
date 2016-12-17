@@ -138,15 +138,15 @@ Now drag the built `KVConstraintExtensionsMaster.framework` into your Xcode proj
 -(void)applyConstaint
 {
     // Here we are going to apply constraints
-    [self.containerView applyLeadingPinConstraintToSuperviewWithPadding:20];
-    [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:20];
+    [self.containerView applyLeadingPinConstraintToSuperview:20];
+    [self.containerView applyTrailingPinConstraintToSuperview:20];
     
     //  we can also apply leading and trailing of containerView both by using the below method. 
         But this method is only useful when both leading and trailing have same pading.
-    // [self.containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:0];
+    // [self.containerView applyLeadingAndTrailingPinConstraintToSuperview:0];
 
-    [self.containerView applyTopPinConstraintToSuperviewWithPadding:65.0f];
-    [self.containerView applyBottomPinConstraintToSuperviewWithPadding:50.0f];
+    [self.containerView applyTopPinConstraintToSuperview:65.0f];
+    [self.containerView applyBottomPinConstraintToSuperview:50.0f];
 }
 
 @end

@@ -41,7 +41,7 @@
     // here setting the constraints for containerView
     [self.containerView applyConstraintForHorizontallyCenterInSuperview];
     
-    [self.containerView applyCenterYPinConstraintToSuperviewWithPadding:60];
+    [self.containerView applyCenterYPinConstraintToSuperview:60];
     
     // this method is only used to increase the Constant Value of the CenterY constraint on Ipad with its Ratio
 
@@ -50,15 +50,15 @@
     [self.containerView applyEqualHeightRatioPinConstrainToSuperview:0.5];
     [self.containerView applyEqualWidthRatioPinConstrainToSuperview:0.7];
     
-    [self.firstView applyLeadingPinConstraintToSuperviewWithPadding:16];
-    [self.thirdView applyTrailingPinConstraintToSuperviewWithPadding:16];
+    [self.firstView applyLeadingPinConstraintToSuperview:16];
+    [self.thirdView applyTrailingPinConstraintToSuperview:16];
     
     // here setting the Top & Bottom constraints for firstView
-    [self.firstView  applyTopAndBottomPinConstraintToSuperviewWithPadding:20];
+    [self.firstView  applyTopAndBottomPinConstraintToSuperview:20];
     // here setting the Top & Bottom constraints for secondView
-    [self.secondView applyTopAndBottomPinConstraintToSuperviewWithPadding:30];
+    [self.secondView applyTopAndBottomPinConstraintToSuperview:30];
     // here setting the Top & Bottom constraints for thirdView
-    [self.thirdView  applyTopAndBottomPinConstraintToSuperviewWithPadding:40];
+    [self.thirdView  applyTopAndBottomPinConstraintToSuperview:40];
     
     //  now here setting the Horizontal space between the views
     
@@ -73,9 +73,9 @@
     
     
     // Here we are trying to accessing the constraints between sibling views
-    NSLayoutConstraint *appliedConstrint = [_secondView accessAppliedConstraintFromSiblingViewByAttribute:NSLayoutAttributeRight toAttribute:NSLayoutAttributeLeft ofView:_thirdView];
+//    NSLayoutConstraint *appliedConstrint = [_secondView accessAppliedConstraintFromSiblingViewByAttribute:NSLayoutAttributeRight toAttribute:NSLayoutAttributeLeft ofView:_thirdView];
 
-    KVLog(@"%@",appliedConstrint);
+//    KVLog(@"%@",appliedConstrint);
     
 }
 
@@ -131,7 +131,7 @@
     [containerView applyEqualHeightRatioPinConstrainToSuperview:(1-(2*space)*0.01)];
 
     // 1. Define the containerView X Position
-    [containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:space];
+    [containerView applyLeadingAndTrailingPinConstraintToSuperview:space];
     
     NSInteger count  = 20;
     UIButton *previousContentButton = nil;
@@ -151,21 +151,21 @@
         [containerView addSubview:contentButton];
         
         // Define the contentButton Size
-        [contentButton applyTopAndBottomPinConstraintToSuperviewWithPadding:space];
+        [contentButton applyTopAndBottomPinConstraintToSuperview:space];
 
-        [contentButton applyAspectRatioConstrain];
+        [contentButton applyAspectRatioConstraint];
         //OR
         //  [contentButton applyWidthConstraint:60.0];
         
         if (i == 0) // for first
         {
-            [contentButton applyLeadingPinConstraintToSuperviewWithPadding:space];
+            [contentButton applyLeadingPinConstraintToSuperview:space];
         }
         else if (i == count-1) // for last
         {
             [previousContentButton applyConstraintFromSiblingViewAttribute:NSLayoutAttributeTrailing toAttribute:NSLayoutAttributeLeading ofView:contentButton spacing:space];
 
-            [contentButton applyTrailingPinConstraintToSuperviewWithPadding:space];
+            [contentButton applyTrailingPinConstraintToSuperview:space];
         }
         else
         {

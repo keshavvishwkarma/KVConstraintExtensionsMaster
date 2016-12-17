@@ -38,15 +38,15 @@
 -(void)applyConstaint
 {
     // here we are going to apply constraints
-    [self.containerView applyLeadingPinConstraintToSuperviewWithPadding:0];
-    [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:0];
+    [self.containerView applyLeadingPinConstraintToSuperview:0];
+    [self.containerView applyTrailingPinConstraintToSuperview:0];
     
     //  we can also apply leading and trailing of containerView both by using the below method. But this method is only useful when both leading and trailing have same padding
     
-    [self.containerView applyTopPinConstraintToSuperviewWithPadding:0];
-    [self.containerView applyBottomPinConstraintToSuperviewWithPadding:54];
+    [self.containerView applyTopPinConstraintToSuperview:0];
+    [self.containerView applyBottomPinConstraintToSuperview:54];
     
-    //[self.containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:80];
+    //[self.containerView applyLeadingAndTrailingPinConstraintToSuperview:80];
 
 }
 

@@ -27,11 +27,13 @@
 
 #import "KVConstraintExtensionsMaster.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIViewController (KVConstraintExtensions)
 
 #pragma mark - common private Layout Guide constraint methods
 // to create
-- (NSLayoutConstraint*)prepareLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding isTopLayoutGuide:(BOOL)isTopLayoutGuide {
+- (NSLayoutConstraint * __nullable)prepareLayoutGuideConstraintToView:(UIView * __nonnull)toView WithPadding:(CGFloat)padding isTopLayoutGuide:(BOOL)isTopLayoutGuide {
     NSLayoutConstraint *preparedConstraint = nil;
     [toView prepareViewForAutoLayout];
     
@@ -48,7 +50,7 @@
     return preparedConstraint;
 }
 
-- (NSLayoutConstraint*)accessAppliedLayoutGuideConstraintFromView:(UIView *)fromView isTopLayoutGuide:(BOOL)isTopLayoutGuide
+- (NSLayoutConstraint * __nullable)accessAppliedLayoutGuideConstraintFromView:(UIView * __nonnull)fromView isTopLayoutGuide:(BOOL)isTopLayoutGuide
 {
     __block NSLayoutConstraint *appliedConstraint = nil;
     __block id<UILayoutSupport>layoutGuide   = isTopLayoutGuide ? self.topLayoutGuide : self.bottomLayoutGuide;
@@ -82,23 +84,25 @@
 }
 
 
-- (void)applyTopLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding {
+- (void)applyTopLayoutGuideConstraintToView:(UIView * __nonnull)toView WithPadding:(CGFloat)padding {
     NSLayoutConstraint *preparedConstraint = [self prepareLayoutGuideConstraintToView:toView WithPadding:padding isTopLayoutGuide:YES];
     [self.view applyPreparedConstraintInView:preparedConstraint];
 }
-- (void)applyBottomLayoutGuideConstraintToView:(UIView *)toView WithPadding:(CGFloat)padding {
+
+- (void)applyBottomLayoutGuideConstraintToView:(UIView * __nonnull)toView WithPadding:(CGFloat)padding {
     NSLayoutConstraint *preparedConstraint = [self prepareLayoutGuideConstraintToView:toView WithPadding:padding isTopLayoutGuide:NO];
     [self.view applyPreparedConstraintInView:preparedConstraint];
 }
 
-- (NSLayoutConstraint*)accessAppliedTopLayoutGuideConstraintFromView:(UIView *)fromView{
+- (NSLayoutConstraint * __nullable)accessAppliedTopLayoutGuideConstraintFromView:(UIView * __nonnull)fromView{
     return [self accessAppliedLayoutGuideConstraintFromView:fromView isTopLayoutGuide:YES];
 }
-- (NSLayoutConstraint*)accessAppliedBottomLayoutGuideConstraintFromView:(UIView *)fromView{
+
+- (NSLayoutConstraint * __nullable)accessAppliedBottomLayoutGuideConstraintFromView:(UIView * __nonnull)fromView{
     return [self accessAppliedLayoutGuideConstraintFromView:fromView isTopLayoutGuide:NO];
 }
 
-- (void)removeAppliedTopLayoutGuideConstraintFromView:(UIView *)fromView{
+- (void)removeAppliedTopLayoutGuideConstraintFromView:(UIView * __nonnull)fromView {
     if (self.view != fromView)
     {
         NSLayoutConstraint *appliedConstraint = [self accessAppliedTopLayoutGuideConstraintFromView:fromView];
@@ -106,7 +110,7 @@
     }
 }
 
-- (void)removeAppliedBottomLayoutGuideConstraintFromView:(UIView *)fromView{
+- (void)removeAppliedBottomLayoutGuideConstraintFromView:(UIView * __nonnull)fromView {
     if (self.view != fromView){
         NSLayoutConstraint *appliedConstraint = [self accessAppliedBottomLayoutGuideConstraintFromView:fromView];
         if (appliedConstraint) [self.view removeConstraint:appliedConstraint];
@@ -114,3 +118,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
