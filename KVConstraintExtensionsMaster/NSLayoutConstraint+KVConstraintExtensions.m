@@ -27,17 +27,17 @@
 
 #import "KVConstraintExtensionsMaster.h"
 
-#pragma mark - Defualt constants values
+#pragma mark - default constants values
 
-const CGFloat defualtMultiplier = 1.0f;
-const CGFloat defualtConstant =  0.0f;
-const NSLayoutRelation defualtRelation = NSLayoutRelationEqual;
-const CGFloat defualtLessMaxPriority = 999.99996 ;
-const CGFloat defualt_iPadRatio = 4.0/3.0;
+const CGFloat defaultMultiplier = 1.0f;
+const CGFloat defaultConstant =  0.0f;
+const NSLayoutRelation defaultRelation = NSLayoutRelationEqual;
+const CGFloat defaultLessMaxPriority = 999.99996 ;
+const CGFloat default_iPadRatio = 4.0/3.0;
 
 @implementation NSLayoutConstraint (KVConstraintExtensions)
 
-+ (CGFloat)defualtSpacingBetweenSiblings
++ (CGFloat)defaultSpacingBetweenSiblings
 {
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
@@ -49,7 +49,7 @@ const CGFloat defualt_iPadRatio = 4.0/3.0;
     return constraint.constant; // 20.0 expected
 }
 
-+ (CGFloat)defualtSpacingBetweenSuperview
++ (CGFloat)defaultSpacingBetweenSuperview
 {
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;

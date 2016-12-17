@@ -63,11 +63,11 @@
     CGFloat const numberOfButtons = 3.0f;
     
     // here setting OriginY possition of view in percentaage.
-    [self.button1 applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
+    [self.button1 applyCenterYRatioPinConstrainToSuperview:(defaultMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
     
     [self.button2 applyConstraintForVerticallyCenterInSuperview];
     
-    [self.button3 applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
+    [self.button3 applyCenterYRatioPinConstrainToSuperview:(defaultMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
     
     [self.containerView updateModifyConstraints];
 }
@@ -92,7 +92,7 @@
     // processing for after midel button list
     while ( (middelIndex +1)< buttons.count)
     {
-        [buttons[++middelIndex] applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
+        [buttons[++middelIndex] applyCenterYRatioPinConstrainToSuperview:(defaultMultiplier+(1.0f/(numberOfButtons-1))) padding:(buttonHeight/(numberOfButtons+1))];
         [buttons[middelIndex] applyConstraintForHorizontallyCenterInSuperview];
     }
     
@@ -100,7 +100,7 @@
     // processing for before midel button list
     while ((middelIndex - 1) != -1)
     {
-        [buttons[--middelIndex] applyCenterYRatioPinConstrainToSuperview:(defualtMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
+        [buttons[--middelIndex] applyCenterYRatioPinConstrainToSuperview:(defaultMultiplier-(1.0f/(numberOfButtons-1))) padding:-(buttonHeight/(numberOfButtons+1))];
         
         [buttons[middelIndex] applyConstraintForHorizontallyCenterInSuperview];
     }

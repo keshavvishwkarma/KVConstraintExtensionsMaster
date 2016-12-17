@@ -44,8 +44,8 @@
     
     [self applyBottomLayoutGuideConstraintToView:[self containerView] WithPadding:54];
     
-    //change the priority of constraint
-    [self.containerView changeAppliedConstraintPriority:defualtLessMaxPriority forAttribute:NSLayoutAttributeLeading];
+    // change the priority of constraint
+    // [self.containerView changeAppliedConstraintPriority:defaultLessMaxPriority forAttribute:NSLayoutAttributeLeading];
 }
 
 @end

@@ -43,29 +43,29 @@
     
     /******* Apply single constraint one by one in any view( containerView ) ************/
     // set top pin constraint
-    [self.containerView applyTopPinConstraintToSuperviewWithPadding:40];
+    [self.containerView applyTopPinConstraintToSuperview:40];
     // set bottom pin constraint
-    [self.containerView applyBottomPinConstraintToSuperviewWithPadding:40];
+    [self.containerView applyBottomPinConstraintToSuperview:40];
     // set Leading pin constraint
-    [self.containerView applyLeadingPinConstraintToSuperviewWithPadding:30];
+    [self.containerView applyLeadingPinConstraintToSuperview:30];
     // set Trailing pin constraint
-    [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:20];
+    [self.containerView applyTrailingPinConstraintToSuperview:20];
     
     // You can also apply the same leading and trailling by wrtting single line
     // so if both side spacing/padding same then you can use below methos
     // wich is Equal above applyLeadingPin and applyTrailingPin methods
-    //    [self.containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:20];
+    //    [self.containerView applyLeadingAndTrailingPinConstraintToSuperview:20];
     
 }
 
 -(void)applyConstraints2
 {
     // Applying the same leading and trailling by wrtting single line of code.
-    [self.containerView applyTopAndBottomPinConstraintToSuperviewWithPadding:40];
+    [self.containerView applyTopAndBottomPinConstraintToSuperview:40];
     
     // using view left & Right alignment instead of leading and trailling.
-    [self.containerView applyLeftPinConstraintToSuperviewWithPadding:30];
-    [self.containerView applyRightPinConstraintToSuperviewWithPadding:30];
+    [self.containerView applyLeftPinConstraintToSuperview:30];
+    [self.containerView applyRightPinConstraintToSuperview:30];
     
     // NOTE:- Read at least once it would be better for you.
     
@@ -91,11 +91,11 @@
      EX;- Call both methos in viewDidLoad with deferent padding
      
      Either
-     [self.containerView applyLeftPinConstraintToSuperviewWithPadding:30];
-     [self.containerView applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:20];
+     [self.containerView applyLeftPinConstraintToSuperview:30];
+     [self.containerView applyLeadingAndTrailingPinConstraintToSuperview:20];
      OR
-     [self.containerView applyTrailingPinConstraintToSuperviewWithPadding:20];
-     [self.containerView applyRightPinConstraintToSuperviewWithPadding:30];
+     [self.containerView applyTrailingPinConstraintToSuperview:20];
+     [self.containerView applyRightPinConstraintToSuperview:30];
      
      
      //  Now you have got something like below in console log -

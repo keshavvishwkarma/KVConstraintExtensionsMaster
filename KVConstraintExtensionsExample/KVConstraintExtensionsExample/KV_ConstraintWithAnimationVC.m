@@ -30,14 +30,14 @@
 
 - (void)applyConstaint
 {
-    [[self containerView] applyTopPinConstraintToSuperviewWithPadding:50.0f];
-    [[self containerView] applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:20];
+    [[self containerView] applyTopPinConstraintToSuperview:50.0f];
+    [[self containerView] applyLeadingAndTrailingPinConstraintToSuperview:20];
     [[self containerView] applyHeightConstraint:50];
     
     [[self textField] applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(8, 5, 4, 5)];
-    [[self headingLabel] applyConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] spacing:defualtConstant];
+    [[self headingLabel] applyConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] spacing:defaultConstant];
     
-    [[self headingLabel] applyLeftPinConstraintToSuperviewWithPadding:5];
+    [[self headingLabel] applyLeftPinConstraintToSuperview:5];
     [[self headingLabel] applyHeightConstraint:16.0f];
 }
 
@@ -68,7 +68,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSLayoutConstraint * constraint = [[self headingLabel] prepareConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] multiplier:defualtMultiplier];
+    NSLayoutConstraint * constraint = [[self headingLabel] prepareConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] multiplier:defaultMultiplier];
     
     NSLayoutConstraint *appliedConstraint = [self.containerView.constraints containsAppliedConstraint:constraint];
     [appliedConstraint setConstant:-CGRectGetHeight(textField.bounds)/2.0];
@@ -83,10 +83,10 @@
 {
     [textField resignFirstResponder];
     
-    NSLayoutConstraint * constraint = [[self headingLabel] prepareConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] multiplier:defualtMultiplier];
+    NSLayoutConstraint * constraint = [[self headingLabel] prepareConstraintFromSiblingViewAttribute:NSLayoutAttributeCenterY toAttribute:NSLayoutAttributeCenterY ofView:[self textField] multiplier:defaultMultiplier];
     
     NSLayoutConstraint *appliedConstraint = [self.containerView.constraints containsAppliedConstraint:constraint];
-    [appliedConstraint setConstant:defualtConstant];
+    [appliedConstraint setConstant:defaultConstant];
     
     [UIView animateWithDuration:0.2f animations:^{
         [self.headingLabel updateModifyConstraints];

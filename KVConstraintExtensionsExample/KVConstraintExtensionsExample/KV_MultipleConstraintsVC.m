@@ -57,7 +57,7 @@
 - (void)applyConstaint2
 {
     // 1. Define the containerView Position
-    [self.containerView applyTopPinConstraintToSuperviewWithPadding:20];
+    [self.containerView applyTopPinConstraintToSuperview:20];
     [self.containerView applyConstraintFitToSuperviewHorizontally];
     
     CGFloat height = 80;
@@ -81,9 +81,9 @@
         [contentButton applyWidthConstraint:width];
         
         // 3. Define the contentButton Position
-        [contentButton applyTopPinConstraintToSuperviewWithPadding:space];
-        [contentButton applyBottomPinConstraintToSuperviewWithPadding:space];
-        [contentButton applyLeftPinConstraintToSuperviewWithPadding:((i*width +(i+1)*space))];
+        [contentButton applyTopPinConstraintToSuperview:space];
+        [contentButton applyBottomPinConstraintToSuperview:space];
+        [contentButton applyLeftPinConstraintToSuperview:((i*width +(i+1)*space))];
     }
 }
 /*******************************
@@ -100,7 +100,7 @@
 [self.secondView applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(INFINITY, 30, HUGE_VALF, 20)];
 
 // here you left two constraint Top and Bottom so view con not determine the height of the view and Y-Position of the view. So now you need to satisfied Y-Position of the view.
-[self.secondView applyCenterYPinConstraintToSuperviewWithPadding:50];
+[self.secondView applyCenterYPinConstraintToSuperview:50];
 
 // now applied constraints are sufficient but still view will not display/visible because view is not determine any height from the applied constraints so by default view set its height zero. So better is to give some height
 [self.secondView applyHeightConstraint:80];

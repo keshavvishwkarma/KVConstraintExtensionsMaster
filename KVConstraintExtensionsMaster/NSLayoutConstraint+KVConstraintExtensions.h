@@ -29,14 +29,14 @@
 
 @interface NSLayoutConstraint (KVConstraintExtensions)
 
-UIKIT_EXTERN const CGFloat defualtMultiplier;
-UIKIT_EXTERN const CGFloat defualtConstant;
-UIKIT_EXTERN const NSLayoutRelation defualtRelation;
-UIKIT_EXTERN const CGFloat defualtLessMaxPriority;
-UIKIT_EXTERN const CGFloat defualt_iPadRatio;
+UIKIT_EXTERN const CGFloat defaultMultiplier;
+UIKIT_EXTERN const CGFloat defaultConstant;
+UIKIT_EXTERN const NSLayoutRelation defaultRelation;
+UIKIT_EXTERN const CGFloat defaultLessMaxPriority;
+UIKIT_EXTERN const CGFloat default_iPadRatio;
 
-+ (CGFloat)defualtSpacingBetweenSiblings;
-+ (CGFloat)defualtSpacingBetweenSuperview;
++ (CGFloat)defaultSpacingBetweenSiblings;
++ (CGFloat)defaultSpacingBetweenSuperview;
 + (BOOL)recognizedDirectionByAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toTttribute;
 /** This method is used to trace the allready added constraints on receiver view
  */

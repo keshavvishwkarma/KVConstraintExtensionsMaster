@@ -50,12 +50,12 @@
     NSAssert((firstView||secondView), @"both firstView & secondView must not be nil.");
     NSAssert(multiplier!=INFINITY, @"Multiplier/Ratio of view must not be INFINITY.");
     
-    return [NSLayoutConstraint constraintWithItem:firstView attribute:attribute1 relatedBy:relation toItem:secondView attribute:attribute2 multiplier:multiplier constant:defualtConstant];
+    return [NSLayoutConstraint constraintWithItem:firstView attribute:attribute1 relatedBy:relation toItem:secondView attribute:attribute2 multiplier:multiplier constant:defaultConstant];
 }
 
 - (NSLayoutConstraint *)prepareSelfConstraint:(NSLayoutAttribute)attribute constant:(CGFloat)constant
 {
-    NSLayoutConstraint *prepareSelfConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:nil attribute:NSLayoutAttributeNotAnAttribute relation:defualtRelation multiplier:defualtMultiplier];
+    NSLayoutConstraint *prepareSelfConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:nil attribute:NSLayoutAttributeNotAnAttribute relation:defaultRelation multiplier:defaultMultiplier];
     [prepareSelfConstraint setConstant:constant];
     return prepareSelfConstraint;
 }
@@ -64,12 +64,12 @@
 
 - (NSLayoutConstraint *)prepareConstraintToSuperviewAttribute:(NSLayoutAttribute)attribute1 attribute:(NSLayoutAttribute)attribute2 relation:(NSLayoutRelation)relation
 {
-    return [self.class prepareConstraintForView:self attribute:attribute1 secondView:[self superview] attribute:attribute2 relation:relation multiplier:defualtMultiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute1 secondView:[self superview] attribute:attribute2 relation:relation multiplier:defaultMultiplier];
 }
 
 - (NSLayoutConstraint *)prepareEqualRelationPinConstraintToSuperview:(NSLayoutAttribute)attribute constant:(CGFloat)constant
 {
-    NSLayoutConstraint *preparePinConstraint = [self prepareConstraintToSuperviewAttribute:attribute attribute:attribute relation:defualtRelation];
+    NSLayoutConstraint *preparePinConstraint = [self prepareConstraintToSuperviewAttribute:attribute attribute:attribute relation:defaultRelation];
     [preparePinConstraint setConstant:constant];
     return preparePinConstraint;
 }
@@ -78,8 +78,8 @@
 {
     NSAssert(multiplier!=INFINITY, @"Multiplier/Ratio of view must not be INFINITY.");
     
-    // note if ratio is equal to zero then its ratio prefered 1.0 that is defualtMultiplier
-    NSLayoutConstraint *preparedPinRatioConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:[self superview] attribute:attribute relation:defualtRelation multiplier:multiplier?multiplier:defualtMultiplier];
+    // note if ratio is equal to zero then its ratio prefered 1.0 that is defaultMultiplier
+    NSLayoutConstraint *preparedPinRatioConstraint = [self.class prepareConstraintForView:self attribute:attribute secondView:[self superview] attribute:attribute relation:defaultRelation multiplier:multiplier?multiplier:defaultMultiplier];
     return preparedPinRatioConstraint;
 }
 
@@ -89,7 +89,7 @@
 //    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
     NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
-    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:relation multiplier:defualtMultiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:relation multiplier:defaultMultiplier];
 }
 
 - (NSLayoutConstraint *)prepareConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView multiplier:(CGFloat)multiplier {
@@ -97,7 +97,7 @@
 //    NSSet * set = [NSSet setWithArray:@[self.superview,otherSiblingView.superview]];
     NSAssert(([NSSet setWithArray:@[self.superview,otherSiblingView.superview]].count == 1), @"All the sibling views must belong to same superview");
     
-    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:defualtRelation multiplier:multiplier];
+    return [self.class prepareConstraintForView:self attribute:attribute secondView:otherSiblingView attribute:toAttribute relation:defaultRelation multiplier:multiplier];
 }
 
 #pragma mark - Add constraints cumulative
@@ -163,7 +163,13 @@
 
 - (void)updateAppliedConstraintConstantValueForIpadByAttribute:(NSLayoutAttribute)attribute{
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self updateAppliedConstraintConstantValueByAttribute:attribute withConstantRatio:defualt_iPadRatio];
+        [self updateAppliedConstraintConstantValueByAttribute:attribute withConstantRatio:default_iPadRatio];
+    }
+}
+
+- (void)updateAppliedConstraintConstantValueForIphoneByAttribute:(NSLayoutAttribute)attribute{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self updateAppliedConstraintConstantValueByAttribute:attribute withConstantRatio:1.0/default_iPadRatio];
     }
 }
 
@@ -189,7 +195,7 @@
     }
     else
     {
-        NSLayoutConstraint *prepareConstraintForSiblingView =  [self prepareConstraintFromSiblingViewAttribute:attribute toAttribute:toAttribute ofView:otherSiblingView multiplier:defualtMultiplier];
+        NSLayoutConstraint *prepareConstraintForSiblingView =  [self prepareConstraintFromSiblingViewAttribute:attribute toAttribute:toAttribute ofView:otherSiblingView multiplier:defaultMultiplier];
         
         appliedConstraint = [self.superview.constraints containsAppliedConstraint:prepareConstraintForSiblingView];
         
@@ -219,51 +225,51 @@
     [self.superview applyPreparedConstraintInView:[self prepareEqualRelationPinConstraintToSuperview:attribute constant:constant]];
 }
 
-- (void)applyLeftPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyLeftPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeLeft constant:padding];
 }
-- (void)applyRightPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyRightPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeRight constant:-padding];
 }
-- (void)applyTopPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyTopPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeTop constant:padding];
 }
-- (void)applyBottomPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyBottomPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeBottom constant:-padding];
 }
-- (void)applyLeadingPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyLeadingPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeLeading constant:padding];
 }
-- (void)applyTrailingPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyTrailingPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeTrailing constant:-padding];
 }
-- (void)applyCenterXPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyCenterXPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeCenterX constant:padding];
 }
-- (void)applyCenterYPinConstraintToSuperviewWithPadding:(CGFloat)padding {
+- (void)applyCenterYPinConstraintToSuperview:(CGFloat)padding {
     [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeCenterY constant:padding];
 }
-- (void)applyLeadingAndTrailingPinConstraintToSuperviewWithPadding:(CGFloat)padding{
-    [self applyLeadingPinConstraintToSuperviewWithPadding:padding];
-    [self applyTrailingPinConstraintToSuperviewWithPadding:padding];
+- (void)applyLeadingAndTrailingPinConstraintToSuperview:(CGFloat)padding{
+    [self applyLeadingPinConstraintToSuperview:padding];
+    [self applyTrailingPinConstraintToSuperview:padding];
 }
-- (void)applyTopAndBottomPinConstraintToSuperviewWithPadding:(CGFloat)padding{
-    [self applyTopPinConstraintToSuperviewWithPadding:padding];
-    [self applyBottomPinConstraintToSuperviewWithPadding:padding];
+- (void)applyTopAndBottomPinConstraintToSuperview:(CGFloat)padding{
+    [self applyTopPinConstraintToSuperview:padding];
+    [self applyBottomPinConstraintToSuperview:padding];
 }
 - (void)applyEqualWidthPinConstrainToSuperview {
-    [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeWidth constant:defualtConstant];
+    [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeWidth constant:defaultConstant];
 }
 - (void)applyEqualHeightPinConstrainToSuperview {
-    [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeHeight constant:defualtConstant];
+    [self applyPreparedEqualRelationPinConstraintToSuperview:NSLayoutAttributeHeight constant:defaultConstant];
 }
 
 - (void)applyEqualHeightRatioPinConstrainToSuperview:(CGFloat)ratio {
-    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeHeight ratio:ratio padding:defualtConstant];
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeHeight ratio:ratio padding:defaultConstant];
 }
 
 - (void)applyEqualWidthRatioPinConstrainToSuperview:(CGFloat)ratio {
-    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeWidth ratio:ratio padding:defualtConstant];
+    [self applyEqualRatioPinConstrainToSuperview:NSLayoutAttributeWidth ratio:ratio padding:defaultConstant];
 }
 
 - (void)applyCenterXRatioPinConstrainToSuperview:(CGFloat)ratio padding:(CGFloat)padding {
@@ -288,16 +294,16 @@
 
 /**  Center horizontally and Vertically  */
 - (void)applyConstraintForCenterInSuperview {
-    [self applyCenterXPinConstraintToSuperviewWithPadding:defualtConstant];
-    [self applyCenterYPinConstraintToSuperviewWithPadding:defualtConstant];
+    [self applyCenterXPinConstraintToSuperview:defaultConstant];
+    [self applyCenterYPinConstraintToSuperview:defaultConstant];
 }
 
 - (void)applyConstraintForVerticallyCenterInSuperview {
-    [self applyCenterYPinConstraintToSuperviewWithPadding:defualtConstant];
+    [self applyCenterYPinConstraintToSuperview:defaultConstant];
 }
 
 - (void)applyConstraintForHorizontallyCenterInSuperview {
-    [self applyCenterXPinConstraintToSuperviewWithPadding:defualtConstant];
+    [self applyCenterXPinConstraintToSuperview:defaultConstant];
 }
 
 - (void)applyConstraintFitToSuperview {
@@ -312,8 +318,8 @@
 }
 
 - (void)applyConstraintFitToSuperviewHorizontally{
-    [self applyRightPinConstraintToSuperviewWithPadding:defualtConstant];
-    [self applyLeftPinConstraintToSuperviewWithPadding:defualtConstant];
+    [self applyTrailingPinConstraintToSuperview:defaultConstant];
+    [self applyLeadingPinConstraintToSuperview:defaultConstant];
 }
 - (void)applyConstraintFitToSuperviewVertically{
     //    INFINITY/HUGE_VALF is used to exclude the constraint from the view
@@ -322,22 +328,22 @@
 
 - (void)applyConstraintFitToSuperviewContentInset:(UIEdgeInsets)Insets {
     if (Insets.top!=INFINITY) {
-        [self applyTopPinConstraintToSuperviewWithPadding:Insets.top];
+        [self applyTopPinConstraintToSuperview:Insets.top];
     }
     if (Insets.left!=INFINITY) {
-        [self applyLeftPinConstraintToSuperviewWithPadding:Insets.left];
+        [self applyLeadingPinConstraintToSuperview:Insets.left];
     }
     if (Insets.bottom!=INFINITY) {
-        [self applyBottomPinConstraintToSuperviewWithPadding:Insets.bottom];
+        [self applyBottomPinConstraintToSuperview:Insets.bottom];
     }
     if (Insets.right!=INFINITY) {
-        [self applyRightPinConstraintToSuperviewWithPadding:Insets.right];
+        [self applyTrailingPinConstraintToSuperview:Insets.right];
     }
 }
 
 #pragma mark - Apply self constraints
-- (void)applyAspectRatioConstrain {
-    [self applyPreparedConstraintInView:[self.class prepareConstraintForView:self attribute:NSLayoutAttributeWidth secondView:self attribute:NSLayoutAttributeHeight relation:defualtRelation multiplier:defualtMultiplier]];
+- (void)applyAspectRatioConstraint {
+    [self applyPreparedConstraintInView:[self.class prepareConstraintForView:self attribute:NSLayoutAttributeWidth secondView:self attribute:NSLayoutAttributeHeight relation:defaultRelation multiplier:defaultMultiplier]];
 }
 - (void)applyWidthConstraint:(CGFloat)width {
     if (width!=INFINITY) {
@@ -354,12 +360,17 @@
     }
 }
 
+- (void)applySizeConstraint:(CGSize)size {
+    [self applyHeightConstraint:size.width];
+    [self applyHeightConstraint:size.height];
+}
+
 #pragma mark - Apply Constraint between sibling views
 
 - (void)applyConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView spacing:(CGFloat)spacing {
     NSAssert(spacing!=INFINITY, @"spacing between sybings view must not be INFINITY.");
     
-    NSLayoutConstraint *prepareConstraintForSiblingView =  [self prepareConstraintFromSiblingViewAttribute:attribute toAttribute:toAttribute ofView:otherSiblingView multiplier:defualtMultiplier];
+    NSLayoutConstraint *prepareConstraintForSiblingView =  [self prepareConstraintFromSiblingViewAttribute:attribute toAttribute:toAttribute ofView:otherSiblingView multiplier:defaultMultiplier];
     [prepareConstraintForSiblingView setConstant:spacing];
     
     if ([NSLayoutConstraint recognizedDirectionByAttribute:attribute toAttribute:toAttribute]) {
@@ -368,5 +379,55 @@
         [self.superview applyPreparedConstraintInView:prepareConstraintForSiblingView];
     }
 }
+
+- (void)scaleFontSizeByRatio:(CGFloat)ratio;
+{
+    CGFloat fontSize = 1.0;
+    UIFont *scaledFont = nil;
+    
+    if ([self isKindOfClass:[UILabel class]]) {
+        UILabel* label = (UILabel*)self;
+        fontSize = (label.font.pointSize)*ratio;
+        scaledFont = [UIFont fontWithName:label.font.fontName size:floorf(fontSize)];
+        [label setFont:scaledFont];
+        [label setNeedsDisplay];
+    }
+    else if ([self isKindOfClass:[UITextField class]])
+    {
+        UITextField* textField = (UITextField*)self;
+        fontSize = (textField.font.pointSize)*ratio;
+        scaledFont = [UIFont fontWithName:textField.font.fontName size:floorf(fontSize)];
+        [textField setFont:scaledFont];
+        [textField setNeedsDisplay];
+    }
+    else if ([self isKindOfClass:[UITextView class]])
+    {
+        UITextView* textView = (UITextView*)self;
+        fontSize = (textView.font.pointSize)*ratio;
+        scaledFont = [UIFont fontWithName:textView.font.fontName size:floorf(fontSize)];
+        [textView setFont:scaledFont];
+        [textView setNeedsDisplay];
+    }
+    else if ([self isKindOfClass:[UIButton class]])
+    {
+        UIButton* button = (UIButton*)self;
+        fontSize = (button.titleLabel.font.pointSize)*ratio;
+        scaledFont = [UIFont fontWithName:button.titleLabel.font.fontName size:floorf(fontSize)];
+        [button.titleLabel setFont:scaledFont];
+        
+        // For under line buttons ...
+        NSAttributedString *attributedString = [button attributedTitleForState:UIControlStateNormal];
+        if (attributedString.length) {
+            NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+            [str addAttribute:NSFontAttributeName value:scaledFont range:NSMakeRange(0,str.length)];
+            [button setAttributedTitle:str forState:UIControlStateNormal];
+        }
+        [button setNeedsDisplay];
+    }
+    else{
+        
+    }
+}
+
 
 @end
