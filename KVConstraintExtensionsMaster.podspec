@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
     s.name             = "KVConstraintExtensionsMaster"
-    s.version          = "1.0.0"
+    s.version          = “1.0.1”
 
-    s.summary          = "KVConstraintExtensionsMaster is a simple auto-layout lirary, to apply, access or modify already added constraint on any view."
-    s.description      = "# KVConstraintExtensionsMaster is a simple auto-layout lirary, by which you can directly access or modify already applied constraint (means expected constraint) either applied Programatically or applied from Interface Builder on any view. So No need to use more IBOutlet reference."
+    s.summary          = "KVConstraintExtensionsMaster is a simple auto-layout library, to apply, access or modify already added constraint on any view."
+    s.description      = "# KVConstraintExtensionsMaster is a simple auto-layout library, by which you can directly access or modify already applied constraint (means expected constraint) either applied programmatically or applied from Interface Builder on any view. So No need to use more IBOutlet reference."
 
     s.homepage         = "https://github.com/keshavvishwkarma/KVConstraintExtensionsMaster"
     s.license          = 'MIT'

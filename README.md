@@ -4,7 +4,7 @@
 
 Main motive of `KVConstraintExtensionsMaster` to reduce the overhead of developers while working with `NSLayoutConstraint` to produce `responsive UI(User Interface) design`.
 
-[![CI Status](http://img.shields.io/travis/keshav vishwkarma/KVConstraintExtensionsMaster.svg?style=flat)](https://travis-ci.org/keshav vishwkarma/KVConstraintExtensionsMaster)
+[![CI Status](http://img.shields.io/travis/keshavvishwkarma/KVConstraintExtensionsMaster.svg?style=flat)](https://travis-ci.org/keshavvishwkarma/KVConstraintExtensionsMaster)
 [![Version](https://img.shields.io/cocoapods/v/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/KVConstraintExtensionsMaster.svg?style=flat)](http://cocoapods.org/pods/KVConstraintExtensionsMaster)
@@ -125,17 +125,17 @@ Now drag the built `KVConstraintExtensionsMaster.framework` into your Xcode proj
 // Do any additional setup after loading the view, typically from a nib.
 
     [self createAndConfigureViewHierarchy]; // Step 1
-    [self applyConstaint];   // Step 2
+    [self applyConstraint];   // Step 2
 }
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Purple];
     [self.view addSubview:self.containerView];
 }
 
--(void)applyConstaint
+-(void)applyConstraint
 {
     // Here we are going to apply constraints
     [self.containerView applyLeadingPinConstraintToSuperview:20];

@@ -29,13 +29,15 @@
 
 @interface UIView (KVConstraintExtensions)
 
-/** This method is used to create new instance of ui elements for autolayout.
+/**
+ This method is used to create new instance of ui elements (view) for autolayout.
  */
-+ (instancetype)prepareNewViewForAutoLayout;
++ (instancetype)prepareAutoLayoutView;
 
-/** This method is used to prepare already created instance of ui elements for autolayout.
+/**
+ This method is used to prepare already created instance of ui elements (view) for autolayout.
  */
-- (void)prepareViewForAutoLayout;
+- (void)prepareAutoLayoutView;
 
 #pragma mark - Generic methods
 #pragma mark - To create constraints for superview
@@ -52,21 +54,24 @@
 
 - (NSLayoutConstraint *)prepareConstraintFromSiblingViewAttribute:(NSLayoutAttribute)attribute toAttribute:(NSLayoutAttribute)toAttribute ofView:(UIView *)otherSiblingView multiplier:(CGFloat)multiplier;
 
-#pragma mark - Add constraints cumulative
+#pragma mark - Add constraints
 
+/*!
+ This method is used to add constraint in receiver, if constraint is not already added other wise it will update constraint.
+ */
 - (void)applyPreparedConstraintInView:(NSLayoutConstraint *)constraint;
 
 #pragma mark - Remove Constraints From a specific View
 
 /*!
- This method is used to remove all the its related constraint from the its superview.
+ This method is used to remove all the its related constraint from the its superview & its sibling.
  */
-- (void)removeAppliedConstraintFromSupreview;
+- (void)removedConstraintFromSupreview;
 
 /*!
- This method is used to remove all constraint (self + superview).
+ This method is used to remove all constraint (self + superview + sibling).
  */
-- (void)removeAllAppliedConstraints;
+- (void)removedAllConstraints;
 
 #pragma mark - Modify applied constraint of a UIView
 
@@ -80,19 +85,47 @@
  */
 - (void)replaceAppliedConstraintInView:(NSLayoutConstraint *)appliedConstraint replaceBy:(NSLayoutConstraint *)constraint;
 
+/*!
+ This method is internaly call layoutIfNeeded &  setNeedsLayout.
+ */
 - (void)updateModifyConstraints;
 
+/*!
+ This method is used to update modified constraints with animation.
+ */
 - (void)updateModifyConstraintsWithAnimation:(void (^)(BOOL finished))completion;
+
+/*!
+ This method is used to update constraint constant value by ratio.
+ 
+ @param attribute attribute to which constraint constant value needs to be updated.
+ @param constantRatio constantRatio by which constant value will be updateed.
+ */
 
 - (void)updateAppliedConstraintConstantValueByAttribute:(NSLayoutAttribute)attribute withConstantRatio:(CGFloat)constantRatio;
 
+/*!
+ This method is used to update constraint constant value by default_iPadRatio only when it is running on iPad.
+ 
+ @param attribute attribute to which constraint constant value needs to be updated.
+ */
+
 - (void)updateAppliedConstraintConstantValueForIpadByAttribute:(NSLayoutAttribute)attribute;
 
+/*!
+ This method is used to update constraint constant value by 1/default_iPadRatio only when it is running on iPhone.
+ 
+ @param attribute attribute to which constraint constant value needs to be updated.
+ */
 - (void)updateAppliedConstraintConstantValueForIphoneByAttribute:(NSLayoutAttribute)attribute;
 
+/*!
+ This method is used to update font size by ratio.
+ */
 - (void)scaleFontSizeByRatio:(CGFloat)ratio;
 
 #pragma mark - Access Applied Constraint By Attributes From a specific View
+
 /*!
  This method is used to access already applied constraint (means expected constraint) constraint by attribute of a constraints.
  */

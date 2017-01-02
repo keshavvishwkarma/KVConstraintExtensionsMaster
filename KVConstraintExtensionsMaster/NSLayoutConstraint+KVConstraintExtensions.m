@@ -42,7 +42,7 @@ const CGFloat default_iPadRatio = 4.0/3.0;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIView *view = [UIView prepareNewViewForAutoLayout];
+        UIView *view = [UIView prepareAutoLayoutView];
         constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"[view]-[view]"                                                              options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });
     
@@ -54,8 +54,8 @@ const CGFloat default_iPadRatio = 4.0/3.0;
     static NSLayoutConstraint *constraint;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIView *view = [UIView prepareNewViewForAutoLayout];
-        UIView *Superview = [UIView prepareNewViewForAutoLayout];
+        UIView *view = [UIView prepareAutoLayoutView];
+        UIView *Superview = [UIView prepareAutoLayoutView];
         [Superview addSubview:view];
         constraint = [NSLayoutConstraint constraintsWithVisualFormat:@"|-[view]"                                                                                 options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)].firstObject;
     });

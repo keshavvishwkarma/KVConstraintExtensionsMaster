@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 // to create
 - (NSLayoutConstraint * __nullable)prepareLayoutGuideConstraintToView:(UIView * __nonnull)toView WithPadding:(CGFloat)padding isTopLayoutGuide:(BOOL)isTopLayoutGuide {
     NSLayoutConstraint *preparedConstraint = nil;
-    [toView prepareViewForAutoLayout];
+    [toView prepareAutoLayoutView];
     
     NSAssert(([self view] != toView), @"you are passing wrong view and fromView must not be distinct from self.view of ViewController.");
     NSAssert(toView, @"fromView must not be nil.");

@@ -111,19 +111,19 @@
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Teal];
     [self.view addSubview:self.containerView];
     
-    self.button1 = [UIButton prepareNewViewForAutoLayout];
+    self.button1 = [UIButton prepareAutoLayoutView];
     self.button1.backgroundColor = [UIColor Red];
     [self.containerView addSubview:self.button1];
     
-    self.button2 = [UIButton prepareNewViewForAutoLayout];
+    self.button2 = [UIButton prepareAutoLayoutView];
     self.button2.backgroundColor = [UIColor Green];
     [self.containerView addSubview:self.button2];
     
-    self.button3 = [UIButton prepareNewViewForAutoLayout];
+    self.button3 = [UIButton prepareAutoLayoutView];
     self.button3.backgroundColor = [UIColor Brown];
     [self.containerView addSubview:self.button3];
     

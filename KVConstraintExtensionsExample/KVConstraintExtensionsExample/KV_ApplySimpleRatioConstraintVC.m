@@ -23,19 +23,19 @@
     
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view. here selected view is containerView
      */
-    [self applyConstaint];
+    [self applyConstraint];
     
 }
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Brown];
     [self.view addSubview:self.containerView];
     
 }
 
-- (void)applyConstaint
+- (void)applyConstraint
 {
     // Demostrate width and height Ratio Constrain programatically
     [self.containerView applyConstraintForCenterInSuperview];

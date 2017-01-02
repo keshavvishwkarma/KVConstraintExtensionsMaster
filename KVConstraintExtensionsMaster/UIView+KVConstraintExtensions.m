@@ -31,13 +31,13 @@
 
 #pragma mark - Initializer Methods
 
-+ (instancetype)prepareNewViewForAutoLayout {
++ (instancetype)prepareAutoLayoutView {
     UIView *preparedView = [self new];
-    [preparedView prepareViewForAutoLayout];
+    [preparedView prepareAutoLayoutView];
     return preparedView;
 }
 
-- (void)prepareViewForAutoLayout {
+- (void)prepareAutoLayoutView {
     if (self.translatesAutoresizingMaskIntoConstraints) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
     }
@@ -119,14 +119,14 @@
 
 #pragma mark - Remove Constraints From a specific View
 
-- (void)removeAppliedConstraintFromSupreview {
+- (void)removedConstraintFromSupreview {
     UIView *superview = self.superview;
     [self removeFromSuperview];
     [superview addSubview:self];
 }
 
-- (void)removeAllAppliedConstraints {
-    [self removeAppliedConstraintFromSupreview];
+- (void)removedAllConstraints {
+    [self removedConstraintFromSupreview];
     if (self.constraints.count) {
         [self removeConstraints:self.constraints];
     }

@@ -25,17 +25,17 @@
     
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
      */
-    [self applyConstaint];
+    [self applyConstraint];
 }
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Purple];
     [self.view addSubview:self.containerView];
 }
 
--(void)applyConstaint
+-(void)applyConstraint
 {
     // apply constrint with LayoutGuides of viewController
     [[self containerView] applyConstraintFitToSuperviewHorizontally];
