@@ -24,11 +24,11 @@
     
     [self createAndConfigureViewHierarchy];
     
-    [self applyConstaint];
+    [self applyConstraint];
     
 }
 
-- (void)applyConstaint
+- (void)applyConstraint
 {
     [[self containerView] applyTopPinConstraintToSuperview:50.0f];
     [[self containerView] applyLeadingAndTrailingPinConstraintToSuperview:20];
@@ -43,13 +43,13 @@
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Brown];
     [self.view addSubview:self.containerView];
     
     self.view.backgroundColor = [UIColor Red];
     
-    self.textField = [UITextField prepareNewViewForAutoLayout];
+    self.textField = [UITextField prepareAutoLayoutView];
     self.textField.backgroundColor = [UIColor Red];
     self.textField.backgroundColor = [UIColor clearColor];
     self.textField.placeholder     = @"Please enter the password.";
@@ -57,7 +57,7 @@
     
     [self.containerView addSubview:self.textField];
     
-    self.headingLabel = [UILabel prepareNewViewForAutoLayout];
+    self.headingLabel = [UILabel prepareAutoLayoutView];
     self.headingLabel.backgroundColor = [UIColor Orange];
     self.headingLabel.backgroundColor = [UIColor clearColor];
     self.headingLabel.text = self.textField.placeholder;

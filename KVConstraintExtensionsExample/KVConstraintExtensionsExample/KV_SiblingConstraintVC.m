@@ -29,14 +29,14 @@
     
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
      */
-    [self applyConstaint];
+    [self applyConstraint];
 
     // for scrollView
     [self configureScrollViewHierarchyAndApplyConstraint];
 }
 
 
--(void)applyConstaint
+-(void)applyConstraint
 {
     // here setting the constraints for containerView
     [self.containerView applyConstraintForHorizontallyCenterInSuperview];
@@ -82,16 +82,16 @@
 - (void)createAndConfigureViewHierarchy
 {
     // here creating views
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Brown];
     
-    self.firstView = [UIView prepareNewViewForAutoLayout];
+    self.firstView = [UIView prepareAutoLayoutView];
     self.firstView.backgroundColor = [UIColor Green];
     
-    self.secondView = [UIView prepareNewViewForAutoLayout];
+    self.secondView = [UIView prepareAutoLayoutView];
     self.secondView.backgroundColor = [UIColor Red];
     
-    self.thirdView = [UIView prepareNewViewForAutoLayout];
+    self.thirdView = [UIView prepareAutoLayoutView];
     self.thirdView.backgroundColor = [UIColor Teal];
     
     // Here configuring view hierarchy
@@ -106,11 +106,11 @@
 
 - (void)configureScrollViewHierarchyAndApplyConstraint
 {
-    UIScrollView *scrollView = [UIScrollView prepareNewViewForAutoLayout];
+    UIScrollView *scrollView = [UIScrollView prepareAutoLayoutView];
     scrollView.backgroundColor = [UIColor Brown];
 
     [self.view addSubview:scrollView];
-    UIView *containerView = [UIView prepareNewViewForAutoLayout];
+    UIView *containerView = [UIView prepareAutoLayoutView];
     containerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
 
     [scrollView addSubview:containerView];
@@ -138,7 +138,7 @@
 
     for (NSInteger i = 0; i < count; i++)
 	{
-        UIButton *contentButton = [UIButton prepareNewViewForAutoLayout];
+        UIButton *contentButton = [UIButton prepareAutoLayoutView];
         if (i&1) {
             [contentButton setBackgroundColor:[UIColor Green]];
         }else{

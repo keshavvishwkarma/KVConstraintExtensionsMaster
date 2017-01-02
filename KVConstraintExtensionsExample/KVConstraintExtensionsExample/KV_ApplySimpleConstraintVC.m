@@ -119,7 +119,7 @@
 {
     [self.view setBackgroundColor:[UIColor Teal]];
     
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Green];
     [self.view addSubview:self.containerView];
 }

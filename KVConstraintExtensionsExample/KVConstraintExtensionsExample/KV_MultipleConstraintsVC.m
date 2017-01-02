@@ -29,24 +29,24 @@
     
     /* Step 2 Apply the constraints by calling KVConstraintExtensions library methods which have prefix "apply" according to constraints by selected view.
      */
-    [self applyConstaint2];
-    [self applyConstaint3];
+    [self applyConstraint2];
+    [self applyConstraint3];
 
 }
 
 - (void)createAndConfigureViewHierarchy
 {
-    self.containerView = [UIView prepareNewViewForAutoLayout];
+    self.containerView = [UIView prepareAutoLayoutView];
     self.containerView.backgroundColor = [UIColor Brown];
     [self.view addSubview:self.containerView];
 
-    self.secondView = [UIView prepareNewViewForAutoLayout];
+    self.secondView = [UIView prepareAutoLayoutView];
     self.secondView.backgroundColor = [UIColor Brown];
     [self.view addSubview:self.secondView];
 
 }
 
-//- (void)applyConstaint1
+//- (void)applyConstraint1
 //{
 //    // Demostrate width and height Ratio Constrain programatically
 //    [self.containerView applyConstraintForCenterInSuperview];
@@ -54,7 +54,7 @@
 //    [self.containerView applyEqualHeightRatioPinConstrainToSuperview:0.4];
 //}
 
-- (void)applyConstaint2
+- (void)applyConstraint2
 {
     // 1. Define the containerView Position
     [self.containerView applyTopPinConstraintToSuperview:20];
@@ -66,7 +66,7 @@
     
     for (NSInteger i = 0; i < 4; i++)
 	{
-        UIButton *contentButton = [UIButton prepareNewViewForAutoLayout];
+        UIButton *contentButton = [UIButton prepareAutoLayoutView];
         if (i&1) {
             [contentButton setBackgroundColor:[UIColor Green]];
         }else{
@@ -90,7 +90,7 @@
  * Apply multiple constraint so easily
  ********************/
 
-- (void)applyConstaint3
+- (void)applyConstraint3
 {
 //1. this method add four constraint (in order top, left, bottom, right) by writing only single
 //    [self.redView applyConstraintFitToSuperviewContentInset:UIEdgeInsetsMake(50, 30, 50, 20)];
